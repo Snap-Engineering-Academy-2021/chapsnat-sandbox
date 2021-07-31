@@ -37,8 +37,8 @@ import { Ionicons } from "@expo/vector-icons";
 import colors from "../../constants/Colors";
 
 const LOS_ANGELES_REGION = {
-  latitude: 34.0522,
-  longitude: -118.2437,
+  latitude: 33.986072440676935, 
+  longitude: -118.27652444626881,
   latitudeDelta: 0.0922,
   longitudeDelta: 0.0421,
 };
@@ -63,8 +63,10 @@ export default function MapScreen() {
   const goToCurrLocation = () => {
     mapView?.current.animateToRegion(
       {
-        latitude: currLocation.latitude,
-        longitude: currLocation.longitude,
+        // latitude: currLocation.latitude,
+        // longitude: currLocation.longitude
+        latitude: 33.986072440676935, 
+        longitude: -118.27652444626881,
         latitudeDelta: 0.0922,
         longitudeDelta: 0.0421,
       },
@@ -91,7 +93,7 @@ export default function MapScreen() {
             latitude: 33.9652241906269, 
             longitude: -118.29209382938507
           }}
-          image={require('../../assets/organizations/community_coalition/CommunityCoalitionMarker.png')}
+          image={require('../../assets/organizations/community_coalition/Marker.png')}
           title='Community Coalition'
           description='Supporting South LA'
         />
@@ -100,7 +102,7 @@ export default function MapScreen() {
             latitude: 33.95000621928571, 
             longitude: -118.25372699815792
           }}
-          image={require('../../assets/organizations/a_new_way_of_life_foundation/ANewWayOfLifeFoundationMarker.png')}
+          image={require('../../assets/organizations/a_new_way_of_life_foundation/Marker.png')}
           title='A New Way of Life Foundation'
           description='Supporting South LA'
         />
@@ -109,7 +111,7 @@ export default function MapScreen() {
             latitude: 33.9706323755787,
             longitude:  -118.25662670611676, 
           }}
-          image={require('../../assets/organizations/youth_justice_coalition/YouthJusticeCoalitionMarker.png')}
+          image={require('../../assets/organizations/youth_justice_coalition/Marker.png')}
           title='Youth Justice Coalition'
           description='Supporting South LA'
         />
@@ -118,10 +120,20 @@ export default function MapScreen() {
             latitude: 34.01742729150679, 
             longitude: -118.27857477158378
           }}
-          image={require('../../assets/organizations/acce_institute/ACCEInstituteMarker.png')}
+          image={require('../../assets/organizations/acce_institute/Marker.png')}
           title='ACCE Institute'
           description='Supporting South LA'
         />
+        <Marker
+          coordinate={{
+            latitude: 33.986072440676935, 
+            longitude: -118.27652444626881,
+          }}
+          image={require('../../assets/bitmoji/CrossedArms.png')}
+          title='ACCE Institute'
+          description='Supporting South LA'
+        />
+
       </MapView>
       {currLocation ? (
         <View style={styles.locateButtonContainer}>
