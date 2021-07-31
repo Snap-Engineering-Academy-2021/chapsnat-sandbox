@@ -63,9 +63,9 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Map"
         component={MapScreen}
         options={{
-          title: "Snap Map",
+          title: "",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="map-outline" />
+            <TabBarIcon focused={focused} name="location-outline" />
           ),
         }}
       />
@@ -73,7 +73,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Chats"
         component={HomeScreen}
         options={{
-          title: "Your Chats",
+          title: "",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="chatbox-ellipses-outline" />
           ),
@@ -83,7 +83,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Camera"
         component={CameraScreen}
         options={{
-          title: "Camera",
+          title: "",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="camera-outline" />
           ),
@@ -93,7 +93,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Stories"
         component={StoriesScreen}
         options={{
-          title: "Your Stories",
+          title: "",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="people-outline" />
           ),
@@ -103,7 +103,7 @@ export default function BottomTabNavigator({ navigation, route }) {
         name="Spotlight"
         component={SpotlightScreen}
         options={{
-          title: "Spotlight",
+          title: "",
           tabBarIcon: ({ focused }) => (
             <TabBarIcon focused={focused} name="play-outline" />
           ),

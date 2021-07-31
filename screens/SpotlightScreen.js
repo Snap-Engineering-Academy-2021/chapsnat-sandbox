@@ -11,12 +11,12 @@ import {
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
+const image = require("../assets/Spotlight.png")
+
 export default function SpotlightScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        This is the spotlight screen! 
-      </Text>
+      <ImageBackground source={image} style={styles.image}></ImageBackground>
     </View>
   );
 }
@@ -26,6 +26,12 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: "white",
     paddingTop: StatusBar.currentHeight,
+  },
+  image: {
+    flex: 1,
+    resizeMode: "cover",
+    top: 0,
+    overflow: "visible",
   },
   text: {
     fontSize: 50,
