@@ -1,3 +1,35 @@
+// // App.js
+// import * as React from 'react';
+// import { StatusBar } from 'expo-status-bar';
+// import { StyleSheet, Text, View } from 'react-native';
+// import MapView from './screens/MapScreen';
+
+// export default function App() {
+//   return (
+//     <View style={styles.container}>
+//       <Text style={{ fontSize: 20, marginBottom: 10, fontWeight: '600' }}>Behold, a map! ✨</Text>
+//       <MapView
+//         style={{
+//           height: 300,
+//           width: 300,
+//           borderRadius: 20,
+//           overflow: 'hidden',
+//         }}
+//       />
+//       <StatusBar style="default" />
+//     </View>
+//   );
+// }
+
+// const styles = StyleSheet.create({
+//   container: {
+//     flex: 1,
+//     backgroundColor: '#fff',
+//     justifyContent: 'center',
+//     alignItems: 'center',
+//   },
+// });
+
 import { StatusBar } from "expo-status-bar";
 import React, { useState, useCallback, useEffect } from "react";
 import { StyleSheet, View } from "react-native";
