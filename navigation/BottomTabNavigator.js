@@ -11,7 +11,7 @@ import CameraScreen from "../screens/CameraScreen";
 import HomeScreen from "../screens/HomeScreen";
 import StoriesScreen from "../screens/StoriesScreen";
 import SpotlightScreen from "../screens/SpotlightScreen";
-import MapScreen from "../screens/MapScreen";
+import MapScreen from "../screens/map_screen/MapScreen";
 
 import Colors from "../constants/Colors";
 
