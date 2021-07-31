@@ -86,6 +86,42 @@ export default function MapScreen() {
             description={"You are here!"}
           />
         ) : null}
+        <Marker
+          coordinate={{
+            latitude: 33.9652241906269, 
+            longitude: -118.29209382938507
+          }}
+          image={require('../../assets/organizations/community_coalition/CommunityCoalitionMarker.png')}
+          title='Community Coalition'
+          description='Supporting South LA'
+        />
+        <Marker
+          coordinate={{
+            latitude: 33.95000621928571, 
+            longitude: -118.25372699815792
+          }}
+          image={require('../../assets/organizations/a_new_way_of_life_foundation/ANewWayOfLifeFoundationMarker.png')}
+          title='A New Way of Life Foundation'
+          description='Supporting South LA'
+        />
+        <Marker
+          coordinate={{
+            latitude: 33.9706323755787,
+            longitude:  -118.25662670611676, 
+          }}
+          image={require('../../assets/organizations/youth_justice_coalition/YouthJusticeCoalitionMarker.png')}
+          title='Youth Justice Coalition'
+          description='Supporting South LA'
+        />
+        <Marker
+          coordinate={{
+            latitude: 34.01742729150679, 
+            longitude: -118.27857477158378
+          }}
+          image={require('../../assets/organizations/acce_institute/ACCEInstituteMarker.png')}
+          title='ACCE Institute'
+          description='Supporting South LA'
+        />
       </MapView>
       {currLocation ? (
         <View style={styles.locateButtonContainer}>
