@@ -29,7 +29,7 @@
 
 import React, { useState, useEffect, useRef } from "react";
 import Colors from "../../constants/Colors";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Text } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import { TouchableOpacity } from "react-native-gesture-handler";
@@ -130,8 +130,8 @@ export default function MapScreen() {
             longitude: -118.27652444626881,
           }}
           image={require('../../assets/bitmoji/CrossedArms.png')}
-          title='ACCE Institute'
-          description='Supporting South LA'
+          title='Your Bitmoji'
+          // description='Supporting South LA'
         />
 
       </MapView>
@@ -150,6 +150,22 @@ export default function MapScreen() {
           </TouchableOpacity>
         </View>
       ) : null}
+      <View 
+        style={{
+          backgroundColor: 'white',
+          position: 'absolute',
+          top: '50%',
+          width: '100%',
+          height: '50%',
+          borderTopLeftRadius: 50,
+          borderTopRightRadius: 50,
+        }}
+      >
+        <Text style={{top: 20, left: 20, fontSize: 20}}>
+          Non-Profit Organizations
+        </Text>
+        
+      </View>
     </>
   );
 }
