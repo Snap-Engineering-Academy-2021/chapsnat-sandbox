@@ -53,13 +53,13 @@ import Animated, {
 } from "react-native-reanimated";
 import BottomSheet from "reanimated-bottom-sheet";
 
-const SPRING_CONFIG = {
-	damping: 80, // more damping = more bounciness
-	overshootClamping: true,
-	restDisplacementThreshold: 0.1,
-	restSpeedThreshold: 0.1,
-	stiffness: 500, // more stiffness = more bounciness
-};
+// const SPRING_CONFIG = {
+// 	damping: 80, // more damping = more bounciness
+// 	overshootClamping: true,
+// 	restDisplacementThreshold: 0.1,
+// 	restSpeedThreshold: 0.1,
+// 	stiffness: 500, // more stiffness = more bounciness
+// };
 
 const LOS_ANGELES_REGION = {
 	latitude: 33.986072440676935,
@@ -227,7 +227,13 @@ export default function MapScreen() {
 					onPress={() => {
 						top.value = withSpring(
 							dimensions.height / 2, // start at half the height
-							SPRING_CONFIG
+							{
+								damping: 80, // more damping = more bounciness
+								overshootClamping: true,
+								restDisplacementThreshold: 0.1,
+								restSpeedThreshold: 0.1,
+								stiffness: 500, // more stiffness = more bouncines
+							}
 						);
 					}}
 				/>
