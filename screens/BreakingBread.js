@@ -13,7 +13,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { useFonts } from "expo-font" ;
 import AppLoading from "expo-app-loading";
 
-export default function SpotlightScreen() {
+export default function SpotlightScreen({navigation}) {
     let [fontsLoaded] = useFonts({
         'Graphik-Regular': require('../assets/fonts/Graphik-Bold.otf'),
       });
@@ -31,7 +31,7 @@ export default function SpotlightScreen() {
                     textAlign: 'center',
                     fontSize: 16,
                     fontWeight: 'bold',
-                    fontFamily: 'fantasy',
+                    //fontFamily: 'fantasy',
                 }} >NEW</Text>
                 </View>
             <View style = {styles.eachweek}>
@@ -40,7 +40,7 @@ export default function SpotlightScreen() {
                 textAlign: 'center',
                 fontSize: 9.50,
                 fontWeight: 'bold',
-                fontFamily: 'fantasy',
+                //fontFamily: 'fantasy',
             }} >EACH WEEK</Text>
             </View>
             <Text style = {{
@@ -48,14 +48,28 @@ export default function SpotlightScreen() {
                 textAlign: 'center',
                 fontSize: 13.61,
                 fontWeight: 'bold',
-                fontFamily: 'fantasy',
+               // fontFamily: 'fantasy',
                 top: 7,
                 left: 10,
             }} >EXPERIENCE/STICKERS !</Text>
-             </View>
+        </View>
         <View style = {styles.getincontainer}>
+            <View style = {styles.issues}>
             </View>
-      
+         
+            <TouchableOpacity style = {styles.gotit} onPress={() => {
+         navigation.navigate("Main");
+        }}>
+            <Text style = {{
+                color: '#FFFFFF',
+                textAlign: 'center',
+                fontSize: 16.61,
+                fontWeight: 'bold',
+               // fontFamily: 'fantasy',
+            }} >Got it</Text>
+            </TouchableOpacity>
+            
+        </View> 
     </View>
   );}
 }
@@ -69,24 +83,12 @@ const styles = StyleSheet.create({
    // paddingTop: StatusBar.currentHeight,
   },
   newWeek: {
-      justifyContent: 'center',
+    justifyContent: 'center',
     width: 284,
-    height: 45,
+    height: 40,
     top: 150,
     backgroundColor: '#C6A580',
     borderRadius: 33,
-
-  },
-  getincontainer:
-  {
-    //position: "absolute",
-   
-    width: 307,
-    height: 336,
-    top: 180,
-    borderRadius:33,
-    backgroundColor: '#E2D1BF',
-    //radius: 33,
   },
   yes: 
   {
@@ -106,5 +108,34 @@ const styles = StyleSheet.create({
     
     backgroundColor:'#E08E47',
     borderRadius: 5.49657,
+  },
+   getincontainer:
+  {
+    alignItems: 'center',
+    width: 307,
+    height: 336,
+    top: 180,
+    borderRadius:33,
+    backgroundColor: '#E2D1BF',
+  },
+  issues:
+  {
+    position: 'absolute',
+    width: 252,
+    height:128,
+    top: 114,
+    backgroundColor: '#FEFDF8',
+    borderRadius: 33.689,
+  },
+  gotit:
+  {
+    justifyContent: 'center',
+
+    position: 'relative',
+    width: 172,
+    height:38,
+    top: 1,
+    backgroundColor: '#334451',
+    borderRadius: 22,
   },
 });
