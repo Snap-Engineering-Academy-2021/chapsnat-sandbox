@@ -27,7 +27,7 @@
 
 // export default MapView;
 
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useContext } from "react";
 import Colors from "../../constants/Colors";
 import {
 	StyleSheet,
@@ -106,7 +106,22 @@ export default function MapScreen() {
 			top: top.value,
 		};
 	});
-	const gestureHandler = useAnimatedGestureHandler({});
+	const gestureHandler = useAnimatedGestureHandler({
+		onStart(_, context) {
+			context.startTop = top.value;
+		},
+		onActive(event, context) {
+			top.value = context.startTop + event.translationY;
+		},
+		//Dimissinng the snap point
+		onEnd() {
+			if (top.value > dimensions.height / 2 + 200) {
+				top.value = dimensions.height;
+			} else {
+				top.value = dimensions.height / 2;
+			}
+		},
+	});
 
 	// const RenderInner = () => (
 	// 	<View style={styles.panel}>
@@ -150,6 +165,12 @@ export default function MapScreen() {
 					/>
 				) : null}
 				<Marker
+					onPress={() => {
+						top.value = withSpring(
+							dimensions.height / 2, // start at half the height
+							SPRING_CONFIG
+						);
+					}}
 					coordinate={{
 						latitude: 33.9652241906269,
 						longitude: -118.29209382938507,
@@ -186,6 +207,12 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
+					// onPress={() => {
+					// 	top.value = withSpring(
+					// 		dimensions.height / 2, // start at half the height
+					// 		SPRING_CONFIG
+					// 	);
+					// }}
 					coordinate={{
 						latitude: 33.986072440676935,
 						longitude: -118.27652444626881,
@@ -214,7 +241,7 @@ export default function MapScreen() {
 				</View>
 			) : null}
 
-			<View
+			{/* <View
 				style={{
 					flex: 1,
 					backgroundColor: "papayawhip",
@@ -231,7 +258,7 @@ export default function MapScreen() {
 						);
 					}}
 				/>
-			</View>
+			</View> */}
 
 			<PanGestureHandler onGestureEvent={gestureHandler}>
 				<Animated.View
