@@ -103,7 +103,7 @@ export default function MapScreen() {
 	const top = useSharedValue(dimensions.height);
 	const style = useAnimatedStyle(() => {
 		return {
-			top: top.value,
+			top: withSpring(top.value, SPRING_CONFIG),
 		};
 	});
 	const gestureHandler = useAnimatedGestureHandler({
