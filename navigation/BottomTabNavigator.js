@@ -3,10 +3,11 @@ import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import * as React from "react";
 import { StyleSheet } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome, Feather } from "@expo/vector-icons";
 
 import TabBarIcon from "../components/TabBarIcon";
-
+import map from "../assets/Map.png"
+import message from "../assets/Vector.png"
 import CameraScreen from "../screens/CameraScreen";
 import HomeScreen from "../screens/HomeScreen";
 import StoriesScreen from "../screens/StoriesScreen";
@@ -51,7 +52,7 @@ export default function BottomTabNavigator({ navigation, route }) {
       initialRouteName={INITIAL_ROUTE_NAME}
       tabBarOptions={{
         activeTintColor: Colors.tintColor,
-        showLabel: true,
+        showLabel: false,
         style: {
           backgroundColor: "black",
           paddingTop: 5,
@@ -65,7 +66,9 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Snap Map",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="map-outline" />
+            <FontAwesome focused={focused} name="map-marker" 
+            color={(focused) ? Colors.tabIconSelected:Colors.tabIconDefault}
+            size={30}/>
           ),
         }}
       />
@@ -75,7 +78,11 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "Your Chats",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="chatbox-ellipses-outline" />
+            <Feather focused={focused} name="message-square" 
+            style = {{    transform: [{rotateY: "180deg"}],
+          }}
+            color={(focused) ? Colors.tabIconSelected:Colors.tabIconDefault}
+            size={30}/>
           ),
         }}
       />
@@ -120,7 +127,11 @@ function getHeaderTitle(route) {
     case "Map":
       return "Map";
     case "Chats":
-      return "Chats";
+      {
+      
+        return "Chats";
+      }
+      
     case "Chat":
       return "Chat";
     case "Profile":

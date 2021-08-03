@@ -13,6 +13,7 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
+    
     "assetBundlePatterns": [
       "**/*"
     ],
@@ -27,6 +28,9 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "rnpm": {
+      "assets": ["./assets/fonts/"]
+     }
   }
 }
