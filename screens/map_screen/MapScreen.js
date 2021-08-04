@@ -109,6 +109,7 @@ export default function MapScreen() {
 	const gestureHandler = useAnimatedGestureHandler({
 		onStart(_, context) {
 			context.startTop = top.value;
+
 		},
 		onActive(event, context) {
 			top.value = context.startTop + event.translationY;
@@ -166,6 +167,17 @@ export default function MapScreen() {
 				) : null}
 				<Marker
 					onPress={() => {
+						mapView?.current.animateToRegion(
+							{
+								// latitude: currLocation.latitude,
+								// longitude: currLocation.longitude
+								latitude: 33.9652241906269-0.0922/4,
+								longitude: -118.29209382938507,
+								latitudeDelta: 0.0922,
+								longitudeDelta: 0.0421,
+							},
+							1000
+						);
 						top.value = withSpring(
 							dimensions.height / 2, // start at half the height
 							SPRING_CONFIG
@@ -180,6 +192,23 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
+					onPress={() => {
+						mapView?.current.animateToRegion(
+							{
+								// latitude: currLocation.latitude,
+								// longitude: currLocation.longitude
+								latitude: 33.95000621928571-0.0922/4,
+								longitude: -118.25372699815792,
+								latitudeDelta: 0.0922,
+								longitudeDelta: 0.0421,
+							},
+							1000
+						);
+						top.value = withSpring(
+							dimensions.height / 2, // start at half the height
+							SPRING_CONFIG
+						);
+					}}
 					coordinate={{
 						latitude: 33.95000621928571,
 						longitude: -118.25372699815792,
@@ -189,6 +218,23 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
+					onPress={() => {
+						mapView?.current.animateToRegion(
+							{
+								// latitude: currLocation.latitude,
+								// longitude: currLocation.longitude
+								latitude: 33.9706323755787-0.0922/4,
+								longitude: -118.25662670611676,
+								latitudeDelta: 0.0922,
+								longitudeDelta: 0.0421,
+							},
+							1000
+						);
+						top.value = withSpring(
+							dimensions.height / 2, // start at half the height
+							SPRING_CONFIG
+						);
+					}}
 					coordinate={{
 						latitude: 33.9706323755787,
 						longitude: -118.25662670611676,
@@ -198,6 +244,23 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
+					onPress={() => {
+						mapView?.current.animateToRegion(
+							{
+								// latitude: currLocation.latitude,
+								// longitude: currLocation.longitude
+								latitude: 34.01742729150679-0.0922/4,
+								longitude: -118.27857477158378,
+								latitudeDelta: 0.0922,
+								longitudeDelta: 0.0421,
+							},
+							1000
+						);
+						top.value = withSpring(
+							dimensions.height / 2, // start at half the height
+							SPRING_CONFIG
+						);
+					}}
 					coordinate={{
 						latitude: 34.01742729150679,
 						longitude: -118.27857477158378,
@@ -207,6 +270,7 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
+					onPress={goToCurrLocation}
 					// onPress={() => {
 					// 	top.value = withSpring(
 					// 		dimensions.height / 2, // start at half the height
