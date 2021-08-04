@@ -6,8 +6,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons, FontAwesome, Feather } from "@expo/vector-icons";
 
 import TabBarIcon from "../components/TabBarIcon";
-import map from "../assets/Map.png"
-import message from "../assets/Vector.png"
+
 import CameraScreen from "../screens/CameraScreen";
 import HomeScreen from "../screens/HomeScreen";
 import StoriesScreen from "../screens/StoriesScreen";

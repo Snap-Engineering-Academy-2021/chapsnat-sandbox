@@ -9,7 +9,8 @@ import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
 import Mini from "./screens/BreakingBread";
-import main from "./screens/MainScreen"
+import MAINSCREEN from "./screens/MainScreen"
+import TAKESTICKER from "./screens/TakeSticker"
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
@@ -40,7 +41,8 @@ function App() {
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
                 <Stack.Screen name="BreakingBread" component={Mini} />
-                <Stack.Screen name="Main" component={main} />
+                <Stack.Screen name="Main" component={MAINSCREEN} />
+                <Stack.Screen name="Pic" component={TAKESTICKER} />
 
               </>
             ) : (

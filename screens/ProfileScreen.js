@@ -92,8 +92,9 @@ export default function ProfileScreen() {
       quality: 0.5,
     });
     if (!result.cancelled) {
-      console.log(result);
       setImageURI(result.uri);
+      console.log("testing",imageURI);
+
       uploadAndUpdateAvatar(result.uri);
     }
   };

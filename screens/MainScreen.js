@@ -10,13 +10,18 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-
-export default function SpotlightScreen() {
+import Ncomponent from "../components/Ncomponent"
+export default function SpotlightScreen({navigation}) {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        This is the spotlight screen! 
-      </Text>
+     <View>
+     <TouchableOpacity style = {styles.gotit} onPress= {
+        () => 
+        { navigation.navigate("Pic");}
+    }>
+           <Text> DOPE!!</Text>
+    </TouchableOpacity>
+     </View>
     </View>
   );
 }
@@ -27,7 +32,15 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     paddingTop: StatusBar.currentHeight,
   },
-  text: {
-    fontSize: 50,
+  gotit:
+  {
+    justifyContent: 'center',
+
+    position: 'relative',
+    width: 50,
+    height:38,
+    top: 1,
+    backgroundColor: 'blue',
+    borderRadius: 22,
   },
 });
