@@ -282,8 +282,7 @@ export default function MapScreen() {
 						longitude: -118.27652444626881,
 					}}
 					image={require("../../assets/bitmoji/CrossedArms.png")}
-					title="ACCE Institute"
-					description="Supporting South LA"
+					title="Your Bitmoji"
 				/>
 			</MapView>
 			{currLocation ? (
