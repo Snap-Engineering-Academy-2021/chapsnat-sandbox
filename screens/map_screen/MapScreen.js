@@ -171,10 +171,10 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 33.9652241906269-0.0922/4,
+								latitude: 33.9652241906269-0.0922/8,
 								longitude: -118.29209382938507,
-								latitudeDelta: 0.0922,
-								longitudeDelta: 0.0421,
+								latitudeDelta: 0.0922/2,
+								longitudeDelta: 0.0421/2,
 							},
 							1000
 						);
@@ -197,10 +197,10 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 33.95000621928571-0.0922/4,
+								latitude: 33.95000621928571-0.0922/8,
 								longitude: -118.25372699815792,
-								latitudeDelta: 0.0922,
-								longitudeDelta: 0.0421,
+								latitudeDelta: 0.0922/2,
+								longitudeDelta: 0.0421/2,
 							},
 							1000
 						);
@@ -223,10 +223,10 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 33.9706323755787-0.0922/4,
+								latitude: 33.9706323755787-0.0922/8,
 								longitude: -118.25662670611676,
-								latitudeDelta: 0.0922,
-								longitudeDelta: 0.0421,
+								latitudeDelta: 0.0922/2,
+								longitudeDelta: 0.0421/2,
 							},
 							1000
 						);
@@ -249,10 +249,10 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 34.01742729150679-0.0922/4,
+								latitude: 34.01742729150679-0.0922/8,
 								longitude: -118.27857477158378,
-								latitudeDelta: 0.0922,
-								longitudeDelta: 0.0421,
+								latitudeDelta: 0.0922/2,
+								longitudeDelta: 0.0421/2,
 							},
 							1000
 						);
