@@ -8,6 +8,7 @@ import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import StoryScreen from "./screens/StoryScreen";
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
@@ -29,13 +30,18 @@ function App() {
     <ActionSheetProvider>
       <View style={styles.container}>
         <NavigationContainer>
-          <Stack.Navigator initialRouteName="Tabs" mode="card">
+          <Stack.Navigator initialRouteName="Tabs" mode="modal">
             {isSignedIn ? (
               <>
                 <Stack.Screen name="Tabs" component={BottomTabNavigator} />
                 <Stack.Screen name="Chat" component={ChatScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen
+                  name="Story"
+                  component={StoryScreen}
+                  options={{ headerShown: false }}
+                />
               </>
             ) : (
               <>
