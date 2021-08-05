@@ -4,6 +4,7 @@ import { StyleSheet, View } from "react-native";
 import { NavigationContainer } from "@react-navigation/native";
 import { createStackNavigator } from "@react-navigation/stack";
 import ChatScreen from "./screens/ChatScreen";
+import ChatBotScreen from "./screens/ChatBotScreen";
 import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
@@ -34,6 +35,7 @@ function App() {
               <>
                 <Stack.Screen name="Tabs" component={BottomTabNavigator} />
                 <Stack.Screen name="Chat" component={ChatScreen} />
+                <Stack.Screen name="ChatBot" component={ChatBotScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
               </>

@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  Button,
 } from "react-native";
 import db from "../firebase";
 import firebase from "@firebase/app";
@@ -85,6 +86,14 @@ export default function HomeScreen({ navigation }) {
             currMillis={currMillis}
           />
         )}
+      />
+      <Button
+        title="Go to chatbot"
+        onPress={() =>
+          navigation.navigate("ChatBot", {
+            currUser: currUser,
+          })
+        }
       />
       <View style={styles.addButton}>
         <TouchableOpacity

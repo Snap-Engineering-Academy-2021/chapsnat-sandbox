@@ -168,7 +168,7 @@ export default function ChatScreen({ route }) {
         name: currUser.displayName,
         avatar: currUser.photoURL ? currUser.photoURL : null,
       }}
-      inverted={false}
+      inverted={true}
       showUserAvatar={true}
       renderUsernameOnMessage={true}
       renderActions={renderActions}
