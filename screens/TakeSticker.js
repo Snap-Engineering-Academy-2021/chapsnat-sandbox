@@ -8,21 +8,25 @@ import {
   SafeAreaView,
   Image,
   Share,
+  useWindowDimensions,
 } from "react-native";
 import { Camera } from "expo-camera";
-import bojack from "../assets/bojack.png"
+import bojack from "../assets/bojack.png";
+import sendto from "../assets/send.png";
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.032);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
 import ViewShot from "react-native-view-shot";
+import * as MediaLibrary from 'expo-media-library';
+import { Ionicons} from "@expo/vector-icons";
 
-export default function App() {
+export default function App({navigation}) {
 
   const [hasPermission, setHasPermission] = useState(null);
   const [cameraType, setCameraType] = useState(Camera.Constants.Type.back);
   const [isPreview, setIsPreview] = useState(false);
   const [isCameraReady, setIsCameraReady] = useState(false);
-  //const [imageURI, setImageURI] = useState(null);
+  const [imageURI, setImageURI] = useState(null);
   const cameraRef = useRef();
   useEffect(() => {
     (async () => {
@@ -38,17 +42,20 @@ export default function App() {
     if (cameraRef.current) {
       const options = { quality: 0.5, base64: true, skipProcessing: true };
       const data = await cameraRef.current.takePictureAsync(options);
+    //  await MediaLibrary.saveToLibraryAsync(data.uri);
+
       const source = data.uri;
       if (source) {
         await cameraRef.current.pausePreview();
         setIsPreview(true);
-       // setImageURI(source);
+        setImageURI(source);
 
-        console.log("picture source", source, "testing image URI");
+        console.log("picture source", source);
+        console.log("taking picture");
       }
     }
   };
-  
+ 
   const switchCamera = () => {
     if (isPreview) {
       return;
@@ -64,37 +71,92 @@ export default function App() {
     setIsPreview(false);
   };
   const renderCancelPreviewButton = () => (
-    <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <View style={[styles.closeCross, { transform: [{ rotate: "45deg" }] }]} />
-      <View
-        style={[styles.closeCross, { transform: [{ rotate: "-45deg" }] }]}
-      />
-    </TouchableOpacity>,
-    <TouchableOpacity onPress={captureViewShot}>
-    <Text style= {{color: '#FFFFFF', fontSize:19,}}>SHARE MAN</Text>
-</TouchableOpacity>
+    <View style = {styles.container}>
+      <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
+      <Ionicons
+              name={"close"}
+              size={32}
+              style={{ marginRight: 5 ,   transform: [{rotateZ: "90deg"}]}}
+              color={"#FFFFFF"}
+              
+            />
+      </TouchableOpacity>
+      <TouchableOpacity onPress={captureViewShot}>
+      <Image  style={{
+        position: 'absolut',
+         bottom: 0,
+            height:79,
+            width: "100%",
+            alignContent: 'flex-end',
+          }}
+          source = {sendto}/>
+      </TouchableOpacity>
+    </View>
   );
   
 
   const renderCaptureControl = () => (
-    <View style={styles.control}>
-      <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
-        <Text style={styles.text}>{"Flip"}</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        activeOpacity={0.7}
-        disabled={!isCameraReady}
-        onPress={takePicture}
-        style={styles.capture}
-      />
-    </View>
+   <View style = {styles.container}>
+      <View style={styles.control}>
+        <View style={styles.snappy}>
+        <TouchableOpacity disabled={!isCameraReady} onPress={switchCamera}>
+        <Ionicons
+              name={"repeat-outline"}
+              size={40}
+              style={{ marginRight: 5 ,   transform: [{rotateZ: "90deg"}]}}
+              color={"#FFFFFF"}
+              
+            />
+        </TouchableOpacity>
+        <Ionicons
+              name={"flash"}
+              size={35}
+              style={{ marginRight: 5 }}
+              color={"#FFFFFF"}
+              
+        />
+        <Ionicons
+          name={"musical-notes"}
+          size={35}
+          style={{ marginRight: 5 }}
+          color={"#FFFFFF"}         
+        />
+        </View>
+      </View>
+      <View>
+        <TouchableOpacity onPress={()=>
+        {
+          navigation.navigate("Main");
+        }}>
+      <Ionicons
+              name={"chevron-down"}
+              size={35}
+              style={{ left: 20 , top: 30,}}
+              color={"#FFFFFF"}
+               />
+               </TouchableOpacity>
+      </View>
+      <View style={styles.bubble}>
+          <TouchableOpacity
+            activeOpacity={0.7}
+            disabled={!isCameraReady}
+            onPress={takePicture}
+            style= {styles.capture}>
+            </TouchableOpacity>
+          <Ionicons
+              name={"happy-outline"}
+              size={40}
+              style={{ left: 10 }}
+              color={"#FFFFFF"}
+               />
+         </View>
+         
+          </View>       
   );
-   
     async function captureViewShot()
     {
       const imageURI = await viewShotRef.current.capture();
-      Share.share({title: 'Image' , uri:imageURI});
-     
+     console.log("capturing picture", imageURI);
     }
   const viewShotRef = useRef();
   if (hasPermission === null) {
@@ -110,7 +172,6 @@ export default function App() {
         ref={cameraRef}
         style={styles.container}
         type={cameraType}
-        flashMode={Camera.Constants.FlashMode.on}
         onCameraReady={onCameraReady}
         onMountError={(error) => {
           console.log("cammera error", error);
@@ -120,12 +181,13 @@ export default function App() {
 
       <View style={styles.container}>
        
-        {isPreview && renderCancelPreviewButton()}
+        {isPreview && renderCancelPreviewButton() }
         {!isPreview && renderCaptureControl()}
         <Image  style={{
             resizeMode: 'contain',
             height: 300,
             width: 300,
+            top: 200,
           }}
           source = {bojack}/>
       </View>
@@ -141,14 +203,10 @@ const styles = StyleSheet.create({
   },
   closeButton: {
     position: "absolute",
-    top: 35,
+    top: 15,
     left: 15,
-    height: closeButtonSize,
-    width: closeButtonSize,
-    borderRadius: Math.floor(closeButtonSize / 2),
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#c4c5c4",
     opacity: 0.7,
     zIndex: 2,
   },
@@ -158,22 +216,23 @@ const styles = StyleSheet.create({
   closeCross: {
     width: "68%",
     height: 1,
-    backgroundColor: "black",
+    backgroundColor: "white",
   },
   control: {
     position: "absolute",
-    flexDirection: "row",
-    bottom: 38,
+    flexDirection: "column",
     width: "100%",
-    alignItems: "center",
-    justifyContent: "center",
+    height: "25%",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
   },
   capture: {
-    backgroundColor: "#f5f6f5",
-    borderRadius: 5,
-    height: captureSize,
-    width: captureSize,
-    borderRadius: Math.floor(captureSize / 2),
+    borderColor: "#f5f6f5",
+    borderWidth: 4,
+    height: 95,
+    width: 95,
+    left: "20%",
+    borderRadius: Math.floor( 100/ 2),
     marginHorizontal: 31,
   },
   recordIndicatorContainer: {
@@ -200,5 +259,25 @@ const styles = StyleSheet.create({
   },
   text: {
     color: "#fff",
+  },
+  bubble: {
+    position: "absolute",
+    flexDirection: "row",
+    bottom: 38,
+    width: "100%",
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  snappy:
+  {
+    position: 'absolute',
+    width: 45,
+    height: 155,
+    right:10,
+    top: 30,
+    alignItems: "center",
+    justifyContent: "center",
+    backgroundColor: 'rgba(0, 0, 0, 0.4)',
+    borderRadius: 20,
   },
 });
