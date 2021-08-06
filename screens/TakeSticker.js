@@ -11,7 +11,7 @@ import {
   useWindowDimensions,
 } from "react-native";
 import { Camera } from "expo-camera";
-import bojack from "../assets/bojack.png";
+import bojack from "../assets/Peace.png";
 import sendto from "../assets/send.png";
 const WINDOW_HEIGHT = Dimensions.get("window").height;
 const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.032);
@@ -83,11 +83,10 @@ export default function App({navigation}) {
       </TouchableOpacity>
       <TouchableOpacity onPress={captureViewShot}>
       <Image  style={{
-        position: 'absolut',
-         bottom: 0,
+            
             height:79,
             width: "100%",
-            alignContent: 'flex-end',
+            
           }}
           source = {sendto}/>
       </TouchableOpacity>
@@ -157,6 +156,7 @@ export default function App({navigation}) {
     {
       const imageURI = await viewShotRef.current.capture();
      console.log("capturing picture", imageURI);
+     navigation.navigate("ShareScreen");
     }
   const viewShotRef = useRef();
   if (hasPermission === null) {

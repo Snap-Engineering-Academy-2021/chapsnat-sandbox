@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import Colors from "../constants/Colors";
 import {
-  ImageBackground,
+  Imag,
   StyleSheet,
   ScrollView,
   Text,
@@ -10,13 +10,11 @@ import {
 } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
-
+import Miles from "../assets/MilesShare.png"
 export default function SpotlightScreen() {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>
-        This is the spotlight screen! 
-      </Text>
+      <Image source = {Miles}/>
     </View>
   );
 }
