@@ -18,7 +18,7 @@ const closeButtonSize = Math.floor(WINDOW_HEIGHT * 0.032);
 const captureSize = Math.floor(WINDOW_HEIGHT * 0.09);
 import ViewShot from "react-native-view-shot";
 import * as MediaLibrary from 'expo-media-library';
-import { Ionicons} from "@expo/vector-icons";
+import { Ionicons, Feather} from "@expo/vector-icons";
 
 export default function App({navigation}) {
 
@@ -73,23 +73,54 @@ export default function App({navigation}) {
   const renderCancelPreviewButton = () => (
     <View style = {styles.container}>
       <TouchableOpacity onPress={cancelPreview} style={styles.closeButton}>
-      <Ionicons
-              name={"close"}
-              size={32}
-              style={{ marginRight: 5 ,   transform: [{rotateZ: "90deg"}]}}
-              color={"#FFFFFF"}
+        <Ionicons
+          name={"close"}
+          size={32}
+          style={{ marginRight: 15, top: 15,   transform: [{rotateZ: "90deg"}]}}
+          color={"#FFFFFF"}
               
-            />
+        />
       </TouchableOpacity>
-      <TouchableOpacity onPress={captureViewShot}>
+      <View style={styles.control2}>
+      <Feather name="type" 
+           
+            color={"#FFFFFF"}
+            size={30}/>
+      <Feather name="edit-2" 
+           
+           color={"#FFFFFF"}
+           size={30}/>
+           <Feather name="scissors" 
+           style={{transform: [{rotateZ: "270deg"}]}}
+           color={"#FFFFFF"}
+           size={30}/>
+           <Ionicons
+          name={"musical-notes"}
+          size={30}
+        
+          color={"#FFFFFF"}         
+        />
+        <Ionicons
+          name={"attach-outline"}
+          style={{transform: [{rotateZ: "45deg"}]}}
+          size={30}
+        
+          color={"#FFFFFF"}         
+        />
+      </View>
+      <TouchableOpacity style = {{
+        flex: 1,
+        alignItems: 'flex-end',
+
+      }}onPress={captureViewShot}>
       <Image  style={{
-            
-            height:79,
-            width: "100%",
-            
+         height: 79,
+          width: '100%',
+            top: 750,
           }}
           source = {sendto}/>
       </TouchableOpacity>
+      
     </View>
   );
   
@@ -112,8 +143,7 @@ export default function App({navigation}) {
               size={35}
               style={{ marginRight: 5 }}
               color={"#FFFFFF"}
-              
-        />
+          />
         <Ionicons
           name={"musical-notes"}
           size={35}
@@ -154,8 +184,8 @@ export default function App({navigation}) {
   );
     async function captureViewShot()
     {
-      const imageURI = await viewShotRef.current.capture();
-     console.log("capturing picture", imageURI);
+    //   const imageURI = await viewShotRef.current.capture();
+    //  console.log("capturing picture", imageURI);
      navigation.navigate("ShareScreen");
     }
   const viewShotRef = useRef();
@@ -185,9 +215,9 @@ export default function App({navigation}) {
         {!isPreview && renderCaptureControl()}
         <Image  style={{
             resizeMode: 'contain',
-            height: 300,
-            width: 300,
-            top: 200,
+            height: 200,
+            width: 201,
+            top: 500,
           }}
           source = {bojack}/>
       </View>
@@ -226,6 +256,17 @@ const styles = StyleSheet.create({
     alignItems: "flex-end",
     justifyContent: "space-between",
   },
+  control2: {
+    position: "absolute",
+    flexDirection: "column",
+    right: 15,
+    top: 35,
+    width: "100%",
+    height: "30%",
+    alignItems: "flex-end",
+    justifyContent: "space-between",
+  },
+
   capture: {
     borderColor: "#f5f6f5",
     borderWidth: 4,

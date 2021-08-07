@@ -45,7 +45,7 @@ function App() {
                 <Stack.Screen name="BreakingBread" component={Mini} options={{ headerShown: false }}/>
                 <Stack.Screen name="Main" component={MAINSCREEN} options={{ headerShown: false }}/>
                 <Stack.Screen name="Pic" component={TAKESTICKER} options={{ headerShown: false }} />
-                <Stack.Screen name="ShareScreen" component={ShareScreen} />
+                <Stack.Screen name="ShareScreen" component={ShareScreen} options={{ headerShown: false }}/>
 
               </>
             ) : (
