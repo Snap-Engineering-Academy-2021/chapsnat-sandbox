@@ -6,7 +6,7 @@ import db from "../firebase";
 import firebase from "@firebase/app";
 import * as ImagePicker from "expo-image-picker";
 
-export default function ChatScreen({ route }) {
+export default function ChatScreen({ route, navigation }) {
   const [imageURI, setImageURI] = useState(null);
   const [messages, setMessages] = useState([]);
 
@@ -86,17 +86,17 @@ export default function ChatScreen({ route }) {
   };
 
   // Replace if using SNAP MINI...
-  const renderAccessory = null;
-  // const renderAccessory = (props) => (
-  //   <View>
-  //     <Button
-  //       onPress={() => {
-  //         alert("Launching Snap Mini...");
-  //       }}
-  //       title={"Launch Snap Mini"}
-  //     />
-  //   </View>
-  // );
+  //const renderAccessory = null;
+  const renderAccessory = (props) => (
+    <View>
+      <Button
+        onPress={() => {
+         navigation.navigate("BreakingBread");
+        }}
+        title={"Launch Snap Mini"}
+      />
+    </View>
+  );
 
   const renderActions = (props) => {
     return (
@@ -116,7 +116,17 @@ export default function ChatScreen({ route }) {
               source={{ uri: imageURI }}
             />
           ) : (
-            <Ionicons name={"camera"} size={28} />
+            <View style = {{
+             
+              right: 0,
+              width: 35, 
+              height: 35,
+              borderRadius: 50,
+              backgroundColor: 'red',
+
+            }}>
+             <Ionicons name={"camera"} size={30} />
+            </View>
           )
         }
       />

@@ -11,7 +11,7 @@ import db from "../firebase";
 import firebase from "@firebase/app";
 import { ListItem, Avatar } from "react-native-elements";
 import Colors from "../constants/Colors";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, Feather } from "@expo/vector-icons";
 
 const MILLIS_IN_SEC = 1000;
 const MILLIS_IN_MIN = MILLIS_IN_SEC * 60;
@@ -98,6 +98,7 @@ export default function HomeScreen({ navigation }) {
             color={Colors.snapblue}
           />
         </TouchableOpacity>
+      
       </View>
     </View>
   );
@@ -117,6 +118,11 @@ function ChatItem({ onPress, item, currMillis }) {
         <ListItem.Title>
           <Text>{item.id}</Text>
         </ListItem.Title>
+        <Feather style ={styles.iconing}
+        name="message-square" 
+            color='#7D7D7D'
+            size={30}/>
+            <View style = {styles.line}/>
         <ListItem.Subtitle style={styles.subtitle}>
           <Image
             style={styles.chatIcon}
@@ -126,7 +132,9 @@ function ChatItem({ onPress, item, currMillis }) {
             {" "}
             Tap to chat ⋅ {getTimeLabel(currMillis - item.lastUpdated)}{" "}
           </Text>
+      
         </ListItem.Subtitle>
+       
       </ListItem.Content>
     </ListItem>
   );
@@ -178,4 +186,20 @@ const styles = StyleSheet.create({
     bottom: 20,
     right: 20,
   },
+  iconing:
+  {
+    position: "absolute",
+    right: 10.25,
+    top: 5,
+    bottom: 0,
+    transform: [{rotateY: "180deg"}],
+  },
+  line:
+  {
+    position: "absolute",
+    width: 1,
+    height: 38.43,
+    right: 64,
+    backgroundColor: '#C4C4C4',
+  }
 });

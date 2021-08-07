@@ -8,6 +8,11 @@ import FriendsScreen from "./screens/FriendsScreen";
 import LoginScreen from "./screens/LoginScreen";
 import SignupScreen from "./screens/SignupScreen";
 import ProfileScreen from "./screens/ProfileScreen";
+import Mini from "./screens/BreakingBread";
+import MAINSCREEN from "./screens/MainScreen"
+import ShareScreen from "./screens/ShareScreen"
+
+import TAKESTICKER from "./screens/TakeSticker"
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
 import { ActionSheetProvider } from "@expo/react-native-action-sheet";
@@ -33,9 +38,15 @@ function App() {
             {isSignedIn ? (
               <>
                 <Stack.Screen name="Tabs" component={BottomTabNavigator} />
-                <Stack.Screen name="Chat" component={ChatScreen} />
+                <Stack.Screen name="Chat" 
+                component={ChatScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />
+                <Stack.Screen name="BreakingBread" component={Mini} options={{ headerShown: false }}/>
+                <Stack.Screen name="Main" component={MAINSCREEN} options={{ headerShown: false }}/>
+                <Stack.Screen name="Pic" component={TAKESTICKER} options={{ headerShown: false }} />
+                <Stack.Screen name="ShareScreen" component={ShareScreen} options={{ headerShown: false }}/>
+
               </>
             ) : (
               <>
