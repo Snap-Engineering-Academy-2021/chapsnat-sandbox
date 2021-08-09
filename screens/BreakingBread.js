@@ -55,6 +55,15 @@ export default function SpotlightScreen({navigation}) {
         </View>
         <View style = {styles.getincontainer}>
             <View style = {styles.issues}>
+              <Text style={{
+                fontSize: 17,
+                textAlign: 'center',
+                lineHeight: 17,
+                color: '#334451'
+              }}>"Breaking Free" provides a community built 
+                off of love, respect, and empowerment. Take your time to listen
+                and share. Enjoy!
+              </Text>
             </View>
          
             <TouchableOpacity style = {styles.gotit} onPress={() => {
@@ -117,6 +126,7 @@ const styles = StyleSheet.create({
     top: 180,
     borderRadius:33,
     backgroundColor: '#E2D1BF',
+    justifyContent: 'flex-end'
   },
   issues:
   {
@@ -126,15 +136,15 @@ const styles = StyleSheet.create({
     top: 114,
     backgroundColor: '#FEFDF8',
     borderRadius: 33.689,
+    justifyContent: 'center'
   },
   gotit:
   {
-    justifyContent: 'center',
-
     position: 'relative',
+    justifyContent: 'center',
     width: 172,
     height:38,
-    top: 1,
+    bottom: 27,
     backgroundColor: '#334451',
     borderRadius: 22,
   },

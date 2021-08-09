@@ -11,7 +11,8 @@ import ProfileScreen from "./screens/ProfileScreen";
 import Mini from "./screens/BreakingBread";
 import MAINSCREEN from "./screens/MainScreen"
 import ShareScreen from "./screens/ShareScreen"
-
+import FormScreen from "./screens/FormScreen"
+import Confirm from "./screens/ConfirmationScreen"
 import TAKESTICKER from "./screens/TakeSticker"
 import BottomTabNavigator from "./navigation/BottomTabNavigator";
 import firebase from "@firebase/app";
@@ -46,6 +47,8 @@ function App() {
                 <Stack.Screen name="Main" component={MAINSCREEN} options={{ headerShown: false }}/>
                 <Stack.Screen name="Pic" component={TAKESTICKER} options={{ headerShown: false }} />
                 <Stack.Screen name="ShareScreen" component={ShareScreen} options={{ headerShown: false }}/>
+                <Stack.Screen name="FormScreen" component={FormScreen} options={{ headerShown: false }} />
+                <Stack.Screen name="Confirm" component={Confirm} options={{ headerShown: false }} />
 
               </>
             ) : (

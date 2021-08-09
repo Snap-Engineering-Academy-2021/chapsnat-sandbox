@@ -21,6 +21,12 @@ export default function SpotlightScreen({navigation}) {
     }>
            <Text> DOPE!!</Text>
     </TouchableOpacity>
+    <TouchableOpacity style = {styles.gotit2} onPress= {
+        () => 
+        { navigation.navigate("FormScreen");}
+    }>
+           <Text> DOPE!!</Text>
+    </TouchableOpacity>
      </View>
     </View>
   );
@@ -41,6 +47,17 @@ const styles = StyleSheet.create({
     height:38,
     top: 1,
     backgroundColor: 'blue',
+    borderRadius: 22,
+  },
+  gotit2:
+  {
+    justifyContent: 'center',
+
+    position: 'relative',
+    width: 100,
+    height:60,
+    top: 15,
+    backgroundColor: '#4FABF8',
     borderRadius: 22,
   },
 });

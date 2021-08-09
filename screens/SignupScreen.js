@@ -58,7 +58,7 @@ export default function SignupScreen() {
         <TextInput
           style={styles.inputs}
           placeholder="Name"
-          keyboardType="email-address"
+          keyboardType="default"
           onChangeText={setName}
         />
       </View>
