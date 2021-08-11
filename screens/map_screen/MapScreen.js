@@ -33,8 +33,10 @@ import {
 	StyleSheet,
 	Text,
 	View,
+  Image,
 	Button,
 	useWindowDimensions,
+  Dimensions,
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
@@ -350,7 +352,82 @@ export default function MapScreen() {
 						style,
 					]}
 				>
-					<Text>Sheet</Text>
+          <View>
+            {/* Header */}
+              <View style={{flexDirection: 'row'}}>
+                <Image source={require('../../assets/organizations/community_coalition/Icon.png')}/>
+                <View style={{}}>
+                  <Text>Community Coalition</Text>
+                  <View style={{flexDirection: 'row'}}>
+                    <TouchableOpacity style={{backgroundColor: 'yellow', borderRadius: 50}}>
+                      <Text>Subscribe</Text>
+                    </TouchableOpacity>
+                    <View>
+                      <Text>8101 Vermont Ave</Text>
+                      <Text>Los Angeles, CA 90044</Text>
+                    </View>
+                  </View>
+                </View>
+              </View>
+            {/* Divider */}
+              <View style={styles.divider}></View>
+            {/* Body */}
+              <View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image source={require('../../assets/organizations/community_coalition/Body1.png')}></Image>
+                  <View>
+                    <Text>Fighting for equal and equitable access</Text>
+                    <Text>to quality education + resources</Text>
+                  </View>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image source={require('../../assets/organizations/community_coalition/Body2.png')}></Image>
+                  <View>
+                    <Text>Organized rallies and protests</Text>
+                  </View>
+                </View>
+                <View style={{flexDirection: 'row'}}>
+                  <Image source={require('../../assets/organizations/community_coalition/Body3.png')}></Image>
+                  <View>
+                    <Text>Encourages youth to utilize their</Text>
+                    <Text>voting power</Text>
+                  </View>
+                </View>
+              </View>
+            {/* Divider */}
+              <View style={styles.divider}></View>
+            {/* Big Buttons */}
+              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+                <View>
+                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
+                    <Text>Academics</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
+                    <Text>Socializing</Text>
+                  </TouchableOpacity>
+                </View>
+                <View>
+                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
+                    <Text>Organizing</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
+                    <Text>Wellness</Text>
+                  </TouchableOpacity>
+                </View>
+              </View>
+            {/* Small Buttons */}
+              <View style={{flexDirection: 'row'}}>
+                  <TouchableOpacity style={{backgroundColor: '#31A3F8',borderRadius: 15, borderWidth: 1}}>
+                    <Text>Lens</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{borderRadius: 15, borderWidth: 1}}>
+                    <Text>Contact</Text>
+                  </TouchableOpacity>
+                  <TouchableOpacity style={{borderRadius: 15, borderWidth: 1}}>
+                    <Text>Donate</Text>
+                  </TouchableOpacity>
+              </View>
+          </View>
 				</Animated.View>
 			</PanGestureHandler>
 
@@ -370,6 +447,41 @@ const styles = StyleSheet.create({
 	map: {
 		...StyleSheet.absoluteFillObject,
 	},
+  shadowEffect: {
+    shadowColor: "#000000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.3,
+    shadowRadius: 4
+  },
+  largeButtonContainer: {
+    height: 44,
+    width: 146,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 15,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 7,
+    marginBottom: 7,
+  },
+  smallButtonContainer: {
+
+  },
+  lensButtonContainer: {
+
+  },
+  subscribeButtonContainer: {
+
+  },
+  divider: {
+    backgroundColor: 'grey', 
+    width: Dimensions.get('window').width*.9, 
+    height: 2
+  },
 	locateButtonContainer: {
 		position: "absolute",
 		bottom: 20,
