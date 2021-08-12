@@ -42,7 +42,6 @@ export default function MapScreen() {
 	const [currLocation, setCurrLocation] = useState(null);
 	const mapView = useRef(null);
 	const [bitmojiFrame, setBitmojiFrame] = useState(0);
-	const [isJustDismissed, setIsJustDismissed] = useState(false);
 
 	useEffect(() => {
 		(async () => {
