@@ -64,7 +64,7 @@ function App() {
           <Stack.Navigator initialRouteName="Tabs" mode="card">
             {isSignedIn ? (
               <>
-                <Stack.Screen name="Tabs" component={BottomTabNavigator} />
+                <Stack.Screen name="Tabs" component={BottomTabNavigator} options={{ headerShown: false }}/>
                 <Stack.Screen name="Chat" component={ChatScreen} />
                 <Stack.Screen name="Friends" component={FriendsScreen} />
                 <Stack.Screen name="Profile" component={ProfileScreen} />

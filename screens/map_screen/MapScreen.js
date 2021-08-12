@@ -90,7 +90,7 @@ export default function MapScreen() {
 			if (top.value > dimensions.height / 4) {
 				top.value = dimensions.height;
 			} else {
-				top.value = dimensions.height / 5;
+				top.value = dimensions.height / 3.3;
 			}
 		},
 	});
@@ -98,7 +98,7 @@ export default function MapScreen() {
 	if (bitmojiFrame % 7 == 6) {
 		mapView?.current.animateToRegion(
 			{
-				latitude: 33.9652241906269 - 0.0922 / 6.3,
+				latitude: 33.9652241906269 - 0.0922 / 7.2,
 				longitude: -118.29209382938507,
 				latitudeDelta: 0.0922 / 2,
 				longitudeDelta: 0.0421 / 2,
@@ -106,7 +106,7 @@ export default function MapScreen() {
 			1000
 		);
 		top.value = withSpring(
-			dimensions.height / 5, // start at half the height
+			dimensions.height / 3.3,
 			SPRING_CONFIG
 		);
 		setBitmojiFrame(0);
@@ -149,7 +149,7 @@ export default function MapScreen() {
 							{
 								latitude:
 									33.9652241906269 -
-									0.0922 / 6.3,
+									0.0922 / 7.2,
 								longitude: -118.29209382938507,
 								latitudeDelta: 0.0922 / 2,
 								longitudeDelta: 0.0421 / 2,
@@ -157,7 +157,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5,
+							dimensions.height / 3.3,
 							SPRING_CONFIG
 						);
 					}}
@@ -175,7 +175,7 @@ export default function MapScreen() {
 							{
 								latitude:
 									33.95000621928571 -
-									0.0922 / 6.3,
+									0.0922 / 7.2,
 								longitude: -118.25372699815792,
 								latitudeDelta: 0.0922 / 2,
 								longitudeDelta: 0.0421 / 2,
@@ -183,7 +183,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5,
+							dimensions.height / 3.3,
 							SPRING_CONFIG
 						);
 					}}
@@ -201,7 +201,7 @@ export default function MapScreen() {
 							{
 								latitude:
 									33.9706323755787 -
-									0.0922 / 6.3,
+									0.0922 / 7.2,
 								longitude: -118.25662670611676,
 								latitudeDelta: 0.0922 / 2,
 								longitudeDelta: 0.0421 / 2,
@@ -209,7 +209,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5,
+							dimensions.height / 3.3,
 							SPRING_CONFIG
 						);
 					}}
@@ -227,7 +227,7 @@ export default function MapScreen() {
 							{
 								latitude:
 									34.01742729150679 -
-									0.0922 / 6.3,
+									0.0922 / 7.2,
 								longitude: -118.27857477158378,
 								latitudeDelta: 0.0922 / 2,
 								longitudeDelta: 0.0421 / 2,
@@ -235,7 +235,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5,
+							dimensions.height / 3.3,
 							SPRING_CONFIG
 						);
 					}}
@@ -256,7 +256,7 @@ export default function MapScreen() {
 						longitude: -118.27652444626881,
 					}}
 					image={require("../../assets/bitmoji/map/ArmsOnWaist.png")}
-					title="Your Bitmoji"
+					title="Danny"
 				/>
 			</MapView>
 			{currLocation ? (
@@ -325,7 +325,7 @@ export default function MapScreen() {
 										top:
 											Dimensions.get(
 												"window"
-											).height / 10,
+											).height / 5,
 									}}
 									source={require("../../assets/bitmoji/walkthrough/1.png")}
 								/>
@@ -335,6 +335,7 @@ export default function MapScreen() {
 									<Image
 										style={{
 											opacity: 1,
+                      top: 70,
 										}}
 										source={require("../../assets/bitmoji/walkthrough/2.png")}
 									/>
@@ -342,7 +343,7 @@ export default function MapScreen() {
 										style={{
 											opacity: 1,
 											right: 20,
-											bottom: 220,
+											bottom: 150,
 											position: "absolute",
 										}}
 										source={require("../../assets/bitmoji/walkthrough/2-1.png")}
@@ -356,7 +357,7 @@ export default function MapScreen() {
 										top:
 											Dimensions.get(
 												"window"
-											).height / 14,
+											).height / 6,
 									}}
 									source={require("../../assets/bitmoji/walkthrough/3.png")}
 								/>
@@ -368,7 +369,7 @@ export default function MapScreen() {
 										top:
 											Dimensions.get(
 												"window"
-											).height / 6,
+											).height / 5,
 									}}
 									source={require("../../assets/bitmoji/walkthrough/4.png")}
 								/>
@@ -383,14 +384,14 @@ export default function MapScreen() {
 													"window"
 												)
 													.height /
-												3.5,
+												3,
 										}}
 										source={require("../../assets/bitmoji/walkthrough/5.png")}
 									/>
 									<Image
 										style={{
 											opacity: 1,
-											top: 100,
+											top: 150,
 											left: 25,
 											position: "absolute",
 										}}
@@ -399,7 +400,7 @@ export default function MapScreen() {
 									<Image
 										style={{
 											opacity: 1,
-											top: 120,
+											top: 150,
 											right: 25,
 											position: "absolute",
 										}}
@@ -408,11 +409,12 @@ export default function MapScreen() {
 									<Image
 										style={{
 											opacity: 1,
-											top: 450,
+											top: 500,
 											right: 50,
 											position: "absolute",
 										}}
 										source={require("../../assets/organizations/youth_justice_coalition/Option.png")}
+                    
 									/>
 								</>
 							) : null}
@@ -721,26 +723,25 @@ export default function MapScreen() {
 				</Animated.View>
 			</PanGestureHandler>
 
-			<View style={{ flexDirection: "row", flex: 4 }}>
+			<View style={{ flexDirection: "row", }}>
 				<Image
 					style={{
 						position: "absolute",
-						left: 25,
-						top: 10,
+						left: 15,
+						top: 50,
 					}}
 					source={require("../../assets/dansHead_logo.png")}
 				></Image>
 				<Image
 					style={{
 						position: "absolute",
-						left: 200,
-						top: 10,
-						// center: true,
-						right: 0,
+						right: 15,
+						top: 50,
+						// center: true,\
 						// zIndex: 100,
-						alignItems: "center",
+						// alignItems: "center",
 					}}
-					source={require("../../assets/Group 194.png")}
+					source={require("../../assets/Group_194.png")}
 				></Image>
 			</View>
 		</>

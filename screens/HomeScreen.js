@@ -6,6 +6,7 @@ import {
   TouchableOpacity,
   Image,
   StyleSheet,
+  SafeAreaView
 } from "react-native";
 import db from "../firebase";
 import firebase from "@firebase/app";
@@ -70,7 +71,7 @@ export default function HomeScreen({ navigation }) {
   }, [currUser]);
 
   return (
-    <View style={styles.container}>
+    <SafeAreaView style={styles.container}>
       <FlatList
         data={chatList}
         renderItem={({ item }) => (
@@ -99,7 +100,7 @@ export default function HomeScreen({ navigation }) {
           />
         </TouchableOpacity>
       </View>
-    </View>
+    </SafeAreaView>
   );
 }
 
