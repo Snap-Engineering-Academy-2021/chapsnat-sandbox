@@ -112,23 +112,6 @@ export default function MapScreen() {
 		setBitmojiFrame(0);
 	}
 
-	const s = StyleSheet.create({
-		backgroundImage: {
-			flex: 1,
-			width: null,
-			height: null,
-		},
-		overlay: {
-			position: "absolute",
-			height: dimensions.height,
-			width: dimensions.width,
-			top: 0,
-			left: 0,
-			backgroundColor: "red",
-			opacity: 1,
-		},
-	});
-
 	return (
 		<>
 			<MapView
