@@ -118,24 +118,24 @@ export default function MapScreen() {
 		},
 		//Dimissinng the snap point
 		onEnd() {
-			// if (top.value > dimensions.height / 4) {
-			top.value = dimensions.height;
-			// } else {
-			// 	top.value = dimensions.height / 4;
-			// }
+			if (top.value > dimensions.height / 4) {
+        top.value = dimensions.height;
+			} else {
+				top.value = dimensions.height / 4;
+			}
 		},
 	});
-	const bitM = () => {
-		return (
-			<View style={s.overlay}>
-				<Image
-					source={{ uri: "http://i.imgur.com/IGlBYaC.jpg" }}
-					style={s.backgroundImage}
-				/>
-				{console.log("bitM")}
-			</View>
-		);
-	};
+	// const bitM = () => {
+	// 	return (
+	// 		<View style={s.overlay}>
+	// 			<Image
+	// 				source={{ uri: "http://i.imgur.com/IGlBYaC.jpg" }}
+	// 				style={s.backgroundImage}
+	// 			/>
+	// 			{console.log("bitM")}
+	// 		</View>
+	// 	);
+	// };
 	const s = StyleSheet.create({
 		backgroundImage: {
 			flex: 1,
@@ -309,7 +309,7 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
-					onPress={bitM}
+					// onPress={bitM}
 					// onPress={() => {
 					// 	top.value = withSpring(
 					// 		dimensions.height / 2, // start at half the height
