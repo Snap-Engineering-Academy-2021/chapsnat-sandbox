@@ -12,9 +12,7 @@ import {
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
-import {
-	PanGestureHandler,
-} from "react-native-gesture-handler";
+import { PanGestureHandler } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../../constants/Colors";
 
@@ -250,13 +248,18 @@ export default function MapScreen() {
 					image={require("../../assets/bitmoji/map/ArmsOnWaist.png")}
 					title="Your Bitmoji"
 				/>
-
 			</MapView>
 			{currLocation ? (
 				<View style={styles.locateButtonContainer}>
 					<TouchableOpacity
-						style={{...styles.locateButton, ...styles.shadowEffect}}
-						onPress={() => {goToCurrLocation(); console.log('hi')}}
+						style={{
+							...styles.locateButton,
+							...styles.shadowEffect,
+						}}
+						onPress={() => {
+							goToCurrLocation();
+							console.log("hi");
+						}}
 					>
 						<Ionicons
 							name={"navigate"}
@@ -421,65 +424,64 @@ const styles = StyleSheet.create({
 	map: {
 		...StyleSheet.absoluteFillObject,
 	},
-  shadowEffect: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4
-  },
-  largeButtonContainer: {
-    height: 44,
-    width: 146,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 7,
-    marginBottom: 7,
-  },
-  smallButtonContainer: {
-    height: 29,
-    width: 81,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 7,
-    marginBottom: 7,
-  },
-  subscribeButtonContainer: {
-    width: 81,
-    height: 30,
-    borderRadius: 30,
-    backgroundColor: '#FFFB54',
-    alignItems: 'center',
-    justifyContent: 'center',
-    margin: 5
-  },
-  divider: {
-    backgroundColor: '#c4c4c4', 
-    width: Dimensions.get('window').width*.9, 
-    height: 1,
-    marginTop: 10,
-    marginBottom: 10
-  },
+	shadowEffect: {
+		shadowColor: "#000000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.3,
+		shadowRadius: 4,
+	},
+	largeButtonContainer: {
+		height: 44,
+		width: 146,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "white",
+		borderRadius: 15,
+		marginLeft: 10,
+		marginRight: 10,
+		marginTop: 7,
+		marginBottom: 7,
+	},
+	smallButtonContainer: {
+		height: 29,
+		width: 81,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "white",
+		borderRadius: 15,
+		marginLeft: 10,
+		marginRight: 10,
+		marginTop: 7,
+		marginBottom: 7,
+	},
+	subscribeButtonContainer: {
+		width: 81,
+		height: 30,
+		borderRadius: 30,
+		backgroundColor: "#FFFB54",
+		alignItems: "center",
+		justifyContent: "center",
+		margin: 5,
+	},
+	divider: {
+		backgroundColor: "#c4c4c4",
+		width: Dimensions.get("window").width * 0.9,
+		height: 1,
+		marginTop: 10,
+		marginBottom: 10,
+	},
 	locateButtonContainer: {
 		position: "absolute",
 		bottom: 20,
-    left: Dimensions.get('window').width*0.5-12
-    
+		left: Dimensions.get("window").width * 0.5 - 12,
 	},
 	locateButton: {
 		height: 30,
 		width: 30,
 		borderRadius: 25,
-		backgroundColor: 'white',
+		backgroundColor: "white",
 	},
 });
