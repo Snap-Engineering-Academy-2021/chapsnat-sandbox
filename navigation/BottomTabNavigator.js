@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import * as React from "react";
-import { StyleSheet } from "react-native";
+import { StyleSheet, Image } from "react-native";
 import { TouchableOpacity } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 
@@ -75,7 +75,8 @@ export default function BottomTabNavigator({ navigation, route }) {
         options={{
           title: "",
           tabBarIcon: ({ focused }) => (
-            <TabBarIcon focused={focused} name="chatbox-ellipses-outline" />
+            // <Image source={require('../assets/ChatIcon.jpg')}/>
+            <TabBarIcon focused={focused} name="chatbox-outline" />
           ),
         }}
       />
