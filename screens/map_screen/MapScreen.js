@@ -118,10 +118,10 @@ export default function MapScreen() {
 		},
 		//Dimissinng the snap point
 		onEnd() {
-			if (top.value > dimensions.height / 2 + 200) {
+			if (top.value > dimensions.height / 2) {
 				top.value = dimensions.height;
 			} else {
-				top.value = dimensions.height / 2;
+				top.value = dimensions.height / 5;
 			}
 		},
 	});
@@ -181,7 +181,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height/5, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -207,7 +207,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 5, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -233,7 +233,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 5, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -259,7 +259,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 5, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -352,19 +352,21 @@ export default function MapScreen() {
 						style,
 					]}
 				>
-          <View>
+          <View style={{alignItems: 'center'}}>
             {/* Header */}
-              <View style={{flexDirection: 'row'}}>
-                <Image source={require('../../assets/organizations/community_coalition/Icon.png')}/>
+              <View style={{flexDirection: 'row', marginRight: 25}}>
+                <TouchableOpacity>
+                  <Image style={{marginRight: 10}} source={require('../../assets/organizations/community_coalition/Icon.png')}/>
+                </TouchableOpacity>
                 <View style={{}}>
-                  <Text>Community Coalition</Text>
-                  <View style={{flexDirection: 'row'}}>
-                    <TouchableOpacity style={{backgroundColor: 'yellow', borderRadius: 50}}>
-                      <Text>Subscribe</Text>
+                  <Text style={{fontWeight: '700', fontSize: 20, marginLeft: 5, marginBottom: 5}}>Community Coalition</Text>
+                  <View style={{flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between'}}>
+                    <TouchableOpacity style={{...styles.subscribeButtonContainer, ...styles.shadowEffect}}>
+                      <Text style={{fontWeight: '600'}}>Subscribe</Text>
                     </TouchableOpacity>
-                    <View>
-                      <Text>8101 Vermont Ave</Text>
-                      <Text>Los Angeles, CA 90044</Text>
+                    <View style={{margin: 5}}>
+                      <Text style={{fontSize: 10}}>8101 Vermont Ave</Text>
+                      <Text style={{fontSize: 10}}>Los Angeles, CA 90044</Text>
                     </View>
                   </View>
                 </View>
@@ -372,23 +374,23 @@ export default function MapScreen() {
             {/* Divider */}
               <View style={styles.divider}></View>
             {/* Body */}
-              <View>
+              <View style={{alignSelf: 'center'}}>
                 <View style={{flexDirection: 'row'}}>
-                  <Image source={require('../../assets/organizations/community_coalition/Body1.png')}></Image>
-                  <View>
+                  <Image style={{marginRight: 5}} source={require('../../assets/organizations/community_coalition/Body1.png')}></Image>
+                  <View style={{justifyContent: 'center'}}>
                     <Text>Fighting for equal and equitable access</Text>
                     <Text>to quality education + resources</Text>
                   </View>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Image source={require('../../assets/organizations/community_coalition/Body2.png')}></Image>
-                  <View>
+                  <Image style={{marginRight: 5}} source={require('../../assets/organizations/community_coalition/Body2.png')}></Image>
+                  <View style={{justifyContent: 'center'}}>
                     <Text>Organized rallies and protests</Text>
                   </View>
                 </View>
                 <View style={{flexDirection: 'row'}}>
-                  <Image source={require('../../assets/organizations/community_coalition/Body3.png')}></Image>
-                  <View>
+                  <Image style={{marginRight: 5}} source={require('../../assets/organizations/community_coalition/Body3.png')}></Image>
+                  <View style={{justifyContent: 'center'}}>
                     <Text>Encourages youth to utilize their</Text>
                     <Text>voting power</Text>
                   </View>
@@ -397,34 +399,34 @@ export default function MapScreen() {
             {/* Divider */}
               <View style={styles.divider}></View>
             {/* Big Buttons */}
-              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
+              <View style={{flexDirection: 'row'}}>
                 <View>
                   <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Academics</Text>
+                    <Text style={{fontWeight: '600'}}>Academics</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Socializing</Text>
+                    <Text style={{fontWeight: '600'}}>Socializing</Text>
                   </TouchableOpacity>
                 </View>
                 <View>
                   <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Organizing</Text>
+                    <Text style={{fontWeight: '600'}}>Organizing</Text>
                   </TouchableOpacity>
                   <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Wellness</Text>
+                    <Text style={{fontWeight: '600'}}>Wellness</Text>
                   </TouchableOpacity>
                 </View>
               </View>
             {/* Small Buttons */}
-              <View style={{flexDirection: 'row'}}>
-                  <TouchableOpacity style={{backgroundColor: '#31A3F8',borderRadius: 15, borderWidth: 1}}>
-                    <Text>Lens</Text>
+              <View style={{flexDirection: 'row', marginTop: 5}}>
+                  <TouchableOpacity style={{...styles.smallButtonContainer, ...styles.shadowEffect, backgroundColor: '#31A3F8'}}>
+                    <Text style={{fontWeight: '600', color:'white'}}>Lens</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{borderRadius: 15, borderWidth: 1}}>
-                    <Text>Contact</Text>
+                  <TouchableOpacity style={{...styles.smallButtonContainer, ...styles.shadowEffect}}>
+                    <Text style={{fontWeight: '600'}}>Contact</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{borderRadius: 15, borderWidth: 1}}>
-                    <Text>Donate</Text>
+                  <TouchableOpacity style={{...styles.smallButtonContainer, ...styles.shadowEffect}}>
+                    <Text style={{fontWeight: '600'}}>Donate</Text>
                   </TouchableOpacity>
               </View>
           </View>
@@ -469,18 +471,32 @@ const styles = StyleSheet.create({
     marginBottom: 7,
   },
   smallButtonContainer: {
-
-  },
-  lensButtonContainer: {
-
+    height: 29,
+    width: 81,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 15,
+    marginLeft: 10,
+    marginRight: 10,
+    marginTop: 7,
+    marginBottom: 7,
   },
   subscribeButtonContainer: {
-
+    width: 81,
+    height: 30,
+    borderRadius: 30,
+    backgroundColor: '#FFFB54',
+    alignItems: 'center',
+    justifyContent: 'center',
+    margin: 5
   },
   divider: {
-    backgroundColor: 'grey', 
+    backgroundColor: '#c4c4c4', 
     width: Dimensions.get('window').width*.9, 
-    height: 2
+    height: 1,
+    marginTop: 10,
+    marginBottom: 10
   },
 	locateButtonContainer: {
 		position: "absolute",
