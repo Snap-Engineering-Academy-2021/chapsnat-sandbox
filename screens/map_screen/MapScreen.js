@@ -33,10 +33,10 @@ import {
 	StyleSheet,
 	Text,
 	View,
-  Image,
+	Image,
 	Button,
 	useWindowDimensions,
-  Dimensions,
+	Dimensions,
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
@@ -46,6 +46,7 @@ import {
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../../constants/Colors";
+// import { Image } from "";
 
 import Animated, {
 	useAnimatedGestureHandler,
@@ -111,18 +112,46 @@ export default function MapScreen() {
 	const gestureHandler = useAnimatedGestureHandler({
 		onStart(_, context) {
 			context.startTop = top.value;
-
 		},
 		onActive(event, context) {
 			top.value = context.startTop + event.translationY;
 		},
 		//Dimissinng the snap point
 		onEnd() {
-			if (top.value > dimensions.height / 2 + 200) {
-				top.value = dimensions.height;
-			} else {
-				top.value = dimensions.height / 2;
-			}
+			// if (top.value > dimensions.height / 4) {
+			top.value = dimensions.height;
+			// } else {
+			// 	top.value = dimensions.height / 4;
+			// }
+		},
+	});
+	const bitM = () => {
+		return (
+			<View style={s.overlay}>
+				<Image
+					source={{ uri: "http://i.imgur.com/IGlBYaC.jpg" }}
+					style={s.backgroundImage}
+				/>
+				{console.log("bitM")}
+			</View>
+		);
+	};
+	const s = StyleSheet.create({
+		backgroundImage: {
+			flex: 1,
+			width: null,
+			height: null,
+		},
+		overlay: {
+			position: "absolute",
+			height: dimensions.height,
+			width: dimensions.width,
+			top: 0,
+			// right: 0,
+			// bottom: 0,
+			left: 0,
+			backgroundColor: "red",
+			opacity: 1,
 		},
 	});
 
@@ -173,15 +202,17 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 33.9652241906269-0.0922/8,
+								latitude:
+									33.9652241906269 -
+									0.0922 / 8,
 								longitude: -118.29209382938507,
-								latitudeDelta: 0.0922/2,
-								longitudeDelta: 0.0421/2,
+								latitudeDelta: 0.0922 / 2,
+								longitudeDelta: 0.0421 / 2,
 							},
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 4, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -199,15 +230,17 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 33.95000621928571-0.0922/8,
+								latitude:
+									33.95000621928571 -
+									0.0922 / 8,
 								longitude: -118.25372699815792,
-								latitudeDelta: 0.0922/2,
-								longitudeDelta: 0.0421/2,
+								latitudeDelta: 0.0922 / 2,
+								longitudeDelta: 0.0421 / 2,
 							},
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 4, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -225,15 +258,17 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 33.9706323755787-0.0922/8,
+								latitude:
+									33.9706323755787 -
+									0.0922 / 8,
 								longitude: -118.25662670611676,
-								latitudeDelta: 0.0922/2,
-								longitudeDelta: 0.0421/2,
+								latitudeDelta: 0.0922 / 2,
+								longitudeDelta: 0.0421 / 2,
 							},
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 4, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -251,15 +286,17 @@ export default function MapScreen() {
 							{
 								// latitude: currLocation.latitude,
 								// longitude: currLocation.longitude
-								latitude: 34.01742729150679-0.0922/8,
+								latitude:
+									34.01742729150679 -
+									0.0922 / 8,
 								longitude: -118.27857477158378,
-								latitudeDelta: 0.0922/2,
-								longitudeDelta: 0.0421/2,
+								latitudeDelta: 0.0922 / 2,
+								longitudeDelta: 0.0421 / 2,
 							},
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
+							dimensions.height / 4, // start at half the height
 							SPRING_CONFIG
 						);
 					}}
@@ -272,7 +309,7 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
-					onPress={goToCurrLocation}
+					onPress={bitM}
 					// onPress={() => {
 					// 	top.value = withSpring(
 					// 		dimensions.height / 2, // start at half the height
@@ -305,7 +342,6 @@ export default function MapScreen() {
 					</TouchableOpacity>
 				</View>
 			) : null}
-
 			{/* <View
 				style={{
 					flex: 1,
@@ -324,7 +360,6 @@ export default function MapScreen() {
 					}}
 				/>
 			</View> */}
-
 			<PanGestureHandler onGestureEvent={gestureHandler}>
 				<Animated.View
 					style={[
@@ -352,82 +387,170 @@ export default function MapScreen() {
 						style,
 					]}
 				>
-          <View>
-            {/* Header */}
-              <View style={{flexDirection: 'row'}}>
-                <Image source={require('../../assets/organizations/community_coalition/Icon.png')}/>
-                <View style={{}}>
-                  <Text>Community Coalition</Text>
-                  <View style={{flexDirection: 'row'}}>
-                    <TouchableOpacity style={{backgroundColor: 'yellow', borderRadius: 50}}>
-                      <Text>Subscribe</Text>
-                    </TouchableOpacity>
-                    <View>
-                      <Text>8101 Vermont Ave</Text>
-                      <Text>Los Angeles, CA 90044</Text>
-                    </View>
-                  </View>
-                </View>
-              </View>
-            {/* Divider */}
-              <View style={styles.divider}></View>
-            {/* Body */}
-              <View>
-                <View style={{flexDirection: 'row'}}>
-                  <Image source={require('../../assets/organizations/community_coalition/Body1.png')}></Image>
-                  <View>
-                    <Text>Fighting for equal and equitable access</Text>
-                    <Text>to quality education + resources</Text>
-                  </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <Image source={require('../../assets/organizations/community_coalition/Body2.png')}></Image>
-                  <View>
-                    <Text>Organized rallies and protests</Text>
-                  </View>
-                </View>
-                <View style={{flexDirection: 'row'}}>
-                  <Image source={require('../../assets/organizations/community_coalition/Body3.png')}></Image>
-                  <View>
-                    <Text>Encourages youth to utilize their</Text>
-                    <Text>voting power</Text>
-                  </View>
-                </View>
-              </View>
-            {/* Divider */}
-              <View style={styles.divider}></View>
-            {/* Big Buttons */}
-              <View style={{flexDirection: 'row', justifyContent: 'center', alignItems: 'center'}}>
-                <View>
-                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Academics</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Socializing</Text>
-                  </TouchableOpacity>
-                </View>
-                <View>
-                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Organizing</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{...styles.largeButtonContainer, ...styles.shadowEffect}}>
-                    <Text>Wellness</Text>
-                  </TouchableOpacity>
-                </View>
-              </View>
-            {/* Small Buttons */}
-              <View style={{flexDirection: 'row'}}>
-                  <TouchableOpacity style={{backgroundColor: '#31A3F8',borderRadius: 15, borderWidth: 1}}>
-                    <Text>Lens</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{borderRadius: 15, borderWidth: 1}}>
-                    <Text>Contact</Text>
-                  </TouchableOpacity>
-                  <TouchableOpacity style={{borderRadius: 15, borderWidth: 1}}>
-                    <Text>Donate</Text>
-                  </TouchableOpacity>
-              </View>
-          </View>
+					<View>
+						{/* Header */}
+						<View style={{ flexDirection: "row" }}>
+							<Image
+								source={require("../../assets/organizations/community_coalition/Icon.png")}
+							/>
+							<View style={{}}>
+								<Text>Community Coalition</Text>
+								<View
+									style={{
+										flexDirection:
+											"row",
+									}}
+								>
+									<TouchableOpacity
+										style={{
+											backgroundColor:
+												"yellow",
+											borderRadius: 50,
+										}}
+									>
+										<Text>
+											Subscribe
+										</Text>
+									</TouchableOpacity>
+									<View>
+										<Text>
+											8101 Vermont
+											Ave
+										</Text>
+										<Text>
+											Los Angeles,
+											CA 90044
+										</Text>
+									</View>
+								</View>
+							</View>
+						</View>
+						{/* Divider */}
+						<View style={styles.divider}></View>
+						{/* Body */}
+						<View>
+							<View
+								style={{ flexDirection: "row" }}
+							>
+								<Image
+									source={require("../../assets/organizations/community_coalition/Body1.png")}
+								></Image>
+								<View>
+									<Text>
+										Fighting for equal
+										and equitable access
+									</Text>
+									<Text>
+										to quality education
+										+ resources
+									</Text>
+								</View>
+							</View>
+							<View
+								style={{ flexDirection: "row" }}
+							>
+								<Image
+									source={require("../../assets/organizations/community_coalition/Body2.png")}
+								></Image>
+								<View>
+									<Text>
+										Organized rallies
+										and protests
+									</Text>
+								</View>
+							</View>
+							<View
+								style={{ flexDirection: "row" }}
+							>
+								<Image
+									source={require("../../assets/organizations/community_coalition/Body3.png")}
+								></Image>
+								<View>
+									<Text>
+										Encourages youth to
+										utilize their
+									</Text>
+									<Text>voting power</Text>
+								</View>
+							</View>
+						</View>
+						{/* Divider */}
+						<View style={styles.divider}></View>
+						{/* Big Buttons */}
+						<View
+							style={{
+								flexDirection: "row",
+								justifyContent: "center",
+								alignItems: "center",
+							}}
+						>
+							<View>
+								<TouchableOpacity
+									style={{
+										...styles.largeButtonContainer,
+										...styles.shadowEffect,
+									}}
+								>
+									<Text>Academics</Text>
+								</TouchableOpacity>
+								<TouchableOpacity
+									style={{
+										...styles.largeButtonContainer,
+										...styles.shadowEffect,
+									}}
+								>
+									<Text>Socializing</Text>
+								</TouchableOpacity>
+							</View>
+							<View>
+								<TouchableOpacity
+									style={{
+										...styles.largeButtonContainer,
+										...styles.shadowEffect,
+									}}
+								>
+									<Text>Organizing</Text>
+								</TouchableOpacity>
+								<TouchableOpacity
+									style={{
+										...styles.largeButtonContainer,
+										...styles.shadowEffect,
+									}}
+								>
+									<Text>Wellness</Text>
+								</TouchableOpacity>
+							</View>
+						</View>
+						{/* Small Buttons */}
+						<View style={{ flexDirection: "row" }}>
+							<TouchableOpacity
+								style={{
+									backgroundColor:
+										"#31A3F8",
+									borderRadius: 15,
+									borderWidth: 1,
+								}}
+							>
+								<Text>Lens</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={{
+									borderRadius: 15,
+									borderWidth: 1,
+								}}
+							>
+								<Text>Contact</Text>
+							</TouchableOpacity>
+							<TouchableOpacity
+								style={{
+									borderRadius: 15,
+									borderWidth: 1,
+								}}
+							>
+								<Text>Donate</Text>
+							</TouchableOpacity>
+						</View>
+					</View>
 				</Animated.View>
 			</PanGestureHandler>
 
@@ -447,41 +570,35 @@ const styles = StyleSheet.create({
 	map: {
 		...StyleSheet.absoluteFillObject,
 	},
-  shadowEffect: {
-    shadowColor: "#000000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.3,
-    shadowRadius: 4
-  },
-  largeButtonContainer: {
-    height: 44,
-    width: 146,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'white',
-    borderRadius: 15,
-    marginLeft: 10,
-    marginRight: 10,
-    marginTop: 7,
-    marginBottom: 7,
-  },
-  smallButtonContainer: {
-
-  },
-  lensButtonContainer: {
-
-  },
-  subscribeButtonContainer: {
-
-  },
-  divider: {
-    backgroundColor: 'grey', 
-    width: Dimensions.get('window').width*.9, 
-    height: 2
-  },
+	shadowEffect: {
+		shadowColor: "#000000",
+		shadowOffset: {
+			width: 0,
+			height: 2,
+		},
+		shadowOpacity: 0.3,
+		shadowRadius: 4,
+	},
+	largeButtonContainer: {
+		height: 44,
+		width: 146,
+		justifyContent: "center",
+		alignItems: "center",
+		backgroundColor: "white",
+		borderRadius: 15,
+		marginLeft: 10,
+		marginRight: 10,
+		marginTop: 7,
+		marginBottom: 7,
+	},
+	smallButtonContainer: {},
+	lensButtonContainer: {},
+	subscribeButtonContainer: {},
+	divider: {
+		backgroundColor: "grey",
+		width: Dimensions.get("window").width * 0.9,
+		height: 2,
+	},
 	locateButtonContainer: {
 		position: "absolute",
 		bottom: 20,
