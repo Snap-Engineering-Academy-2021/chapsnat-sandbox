@@ -1,32 +1,3 @@
-// // MapView.js
-// import * as React from 'react';
-// import { StyleSheet, Text, View } from 'react-native';
-// import Constants from 'expo-constants';
-
-// let MapView;
-
-// if (Constants.appOwnership === 'expo') {
-//   MapView = props => (
-//     <View
-//       style={[
-//         {
-//           backgroundColor: 'lightblue',
-//           alignItems: 'center',
-//           justifyContent: 'center',
-//         },
-//         props.style,
-//       ]}>
-//       <Text>🗺 (Mapbox not available)</Text>
-//     </View>
-//   );
-// } else {
-//   const Mapbox = require('@react-native-mapbox-gl/maps').default;
-//   Mapbox.setAccessToken('pk.eyJ1IjoidmVnZ2llZGlubyIsImEiOiJja3JyMGQwYWs5Mjg5MzFtdG5tMGY2cWc2In0.l4pyA__TYkJcEkrhofhE3A');
-//   MapView = Mapbox.MapView;
-// }
-
-// export default MapView;
-
 import React, { useState, useEffect, useRef, useContext } from "react";
 import Colors from "../../constants/Colors";
 import {
@@ -46,7 +17,6 @@ import {
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../../constants/Colors";
-// import { Image } from "";
 
 import Animated, {
 	useAnimatedGestureHandler,
@@ -54,7 +24,6 @@ import Animated, {
 	useAnimatedStyle,
 	withSpring,
 } from "react-native-reanimated";
-import BottomSheet from "reanimated-bottom-sheet";
 
 const SPRING_CONFIG = {
 	damping: 80, // more damping = more bounciness
@@ -71,24 +40,12 @@ const LOS_ANGELES_REGION = {
 	longitudeDelta: 0.0421,
 };
 
-// function bitmojiOverlay() {
-//   return(
-//     <>
-//       <View style={{height: Dimensions.get('window').height, width: Dimensions.get('window').width, position: 'absolute'}}>
-//       <TouchableOpacity 
-//         onPress={console.log('moo')}
-//         style={{height: Dimensions.get('window').height, width: Dimensions.get('window').width, backgroundColor: 'black',opacity: 0.5, position: 'absolute'}}/>
-//         <Image style={{opacity: 1, top: Dimensions.get('window').height/14}} source={require("../../assets/bitmoji/walkthrough/1.png")}/>
-//       </View>
-//     </>
-//   )
-// }
-
 export default function MapScreen() {
 	const [currLocation, setCurrLocation] = useState(null);
 	const mapView = useRef(null);
   const [bitmojiFrame, setBitmojiFrame] = useState(0);
-
+  const [isJustDismissed, setIsJustDismissed] = useState(false);
+  
 	useEffect(() => {
 		(async () => {
 			let { status } =
@@ -116,6 +73,7 @@ export default function MapScreen() {
 			1000
 		);
 	};
+  
 	const dimensions = useWindowDimensions();
 	const top = useSharedValue(dimensions.height);
 	const style = useAnimatedStyle(() => {
@@ -130,9 +88,8 @@ export default function MapScreen() {
 		onActive(event, context) {
 			top.value = context.startTop + event.translationY;
 		},
-		//Dimissinng the snap point
 		onEnd() {
-			if (top.value > dimensions.height / 2) {
+			if (top.value > dimensions.height /4) {
 				top.value = dimensions.height;
 			} else {
 				top.value = dimensions.height / 5;
@@ -140,18 +97,23 @@ export default function MapScreen() {
 		},
 	});
 
-  
-	// const bitM = () => {
-	// 	return (
-	// 		<View style={s.overlay}>
-	// 			<Image
-	// 				source={{ uri: "http://i.imgur.com/IGlBYaC.jpg" }}
-	// 				style={s.backgroundImage}
-	// 			/>
-	// 			{console.log("bitM")}
-	// 		</View>
-	// 	);
-	// };
+  if(bitmojiFrame%7 == 6) {
+    mapView?.current.animateToRegion(
+      {
+        latitude: 33.9652241906269-0.0922/6.3,
+        longitude: -118.29209382938507,
+        latitudeDelta: 0.0922 / 2,
+        longitudeDelta: 0.0421 / 2,
+      },
+      1000
+    );
+    top.value = withSpring(
+      dimensions.height/5, // start at half the height
+      SPRING_CONFIG
+    );
+    setBitmojiFrame(0);
+  }
+
 	const s = StyleSheet.create({
 		backgroundImage: {
 			flex: 1,
@@ -163,40 +125,11 @@ export default function MapScreen() {
 			height: dimensions.height,
 			width: dimensions.width,
 			top: 0,
-			// right: 0,
-			// bottom: 0,
 			left: 0,
 			backgroundColor: "red",
 			opacity: 1,
 		},
 	});
-
-	// const RenderInner = () => (
-	// 	<View style={styles.panel}>
-	// 		<View style={{ alignItems: "center" }}>
-	// 			<Text style={styles.panelTitle}>ACCE Institute</Text>
-	// 			<Text style={styles.panelSubTitle}>
-	// 				Swipe down to close
-	// 			</Text>
-	// 		</View>
-	// 		<TouchableOpacity style={styles.panelButton}>
-	// 			<Text style={styles.panelButtonTitle}>
-	// 				Go to Current Location
-	// 			</Text>
-	// 		</TouchableOpacity>
-	// 	</View>
-	// );
-
-	// const RenderHeader = () => (
-	// 	<View style={styles.header}>
-	// 		<View style={styles.panelHeader}>
-	// 			<View style={styles.panelHandle}></View>
-	// 		</View>
-	// 	</View>
-	// );
-
-	// const bs = React.createRef();
-	// const fall = new Animated.Value(1);
 
 	return (
 		<>
@@ -216,8 +149,6 @@ export default function MapScreen() {
 					onPress={() => {
 						mapView?.current.animateToRegion(
 							{
-								// latitude: currLocation.latitude,
-								// longitude: currLocation.longitude
 								latitude: 33.9652241906269-0.0922/6.3,
 								longitude: -118.29209382938507,
 								latitudeDelta: 0.0922 / 2,
@@ -226,7 +157,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height/5, // start at half the height
+							dimensions.height/5,
 							SPRING_CONFIG
 						);
 					}}
@@ -242,8 +173,6 @@ export default function MapScreen() {
 					onPress={() => {
 						mapView?.current.animateToRegion(
 							{
-								// latitude: currLocation.latitude,
-								// longitude: currLocation.longitude
 								latitude: 33.95000621928571-0.0922/6.3,
 								longitude: -118.25372699815792,
 								latitudeDelta: 0.0922 / 2,
@@ -252,7 +181,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5, // start at half the height
+							dimensions.height / 5,
 							SPRING_CONFIG
 						);
 					}}
@@ -268,8 +197,6 @@ export default function MapScreen() {
 					onPress={() => {
 						mapView?.current.animateToRegion(
 							{
-								// latitude: currLocation.latitude,
-								// longitude: currLocation.longitude
 								latitude: 33.9706323755787-0.0922/6.3,
 								longitude: -118.25662670611676,
 								latitudeDelta: 0.0922 / 2,
@@ -278,7 +205,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5, // start at half the height
+							dimensions.height / 5,
 							SPRING_CONFIG
 						);
 					}}
@@ -294,8 +221,6 @@ export default function MapScreen() {
 					onPress={() => {
 						mapView?.current.animateToRegion(
 							{
-								// latitude: currLocation.latitude,
-								// longitude: currLocation.longitude
 								latitude: 34.01742729150679-0.0922/6.3,
 								longitude: -118.27857477158378,
 								latitudeDelta: 0.0922 / 2,
@@ -304,7 +229,7 @@ export default function MapScreen() {
 							1000
 						);
 						top.value = withSpring(
-							dimensions.height / 5, // start at half the height
+							dimensions.height / 5,
 							SPRING_CONFIG
 						);
 					}}
@@ -318,12 +243,6 @@ export default function MapScreen() {
 				/>
 				<Marker
 					onPress={() => {setBitmojiFrame(1)}}
-					// onPress={() => {
-					// 	top.value = withSpring(
-					// 		dimensions.height / 2, // start at half the height
-					// 		SPRING_CONFIG
-					// 	);
-					// }}
 					coordinate={{
 						latitude: 33.986072440676935,
 						longitude: -118.27652444626881,
@@ -361,7 +280,7 @@ export default function MapScreen() {
               height: Dimensions.get('window').height,
               width: Dimensions.get('window').width
             }}/>
-            
+
           <TouchableOpacity 
             style={{
               height: Dimensions.get('window').height,
@@ -383,34 +302,11 @@ export default function MapScreen() {
               <Image style={{opacity: 1, top: 450, right: 50, position: 'absolute'}} source={require("../../assets/organizations/youth_justice_coalition/Option.png")}/>
               
             </>:null}
-            
           </TouchableOpacity>
         </View>
       </>:null}
-      {/* {(bitmojiFrame%7 == 6)? (()=>{top.value = withSpring(
-							dimensions.height/5, // start at half the height
-							SPRING_CONFIG
-						); setBitmojiFrame(bitmojiFrame + 1)}):null} */}
-      
-			{/* <View
-				style={{
-					flex: 1,
-					backgroundColor: "papayawhip",
-					alignItems: "center",
-					justifyContent: "center",
-				}}
-			>
-				<Button
-					title="Open Sheet"
-					onPress={() => {
-						top.value = withSpring(
-							dimensions.height / 2, // start at half the height
-							SPRING_CONFIG
-						);
-					}}
-				/>
-			</View> */}
-			<PanGestureHandler onGestureEvent={gestureHandler}>
+    
+			<PanGestureHandler onGestureEvent={gestureHandler} onHandlerStateChange={goToCurrLocation}>
 				<Animated.View
 					style={[
 						{
@@ -510,23 +406,13 @@ export default function MapScreen() {
                   <TouchableOpacity style={{...styles.smallButtonContainer, ...styles.shadowEffect}}>
                     <Text style={{fontWeight: '600'}}>Contact</Text>
                   </TouchableOpacity>
-                  <TouchableOpacity style={{...styles.smallButtonContainer, ...styles.shadowEffect}}>
+                  <TouchableOpacity style={[styles.smallButtonContainer, styles.shadowEffect]}>
                     <Text style={{fontWeight: '600'}}>Donate</Text>
                   </TouchableOpacity>
               </View>
           </View>
 				</Animated.View>
 			</PanGestureHandler>
-
-      
-			{/* ref={this.bs}
-				snapPoints={[330, 0]}
-				renderContent={this.RenderInner}
-				renderHeader={this.RenderHeader}
-				initialSnap={1}
-				callbackNode={this.fall}
-				enabledGestureInteraction={true}
-			/> */}
 		</>
 	);
 }
