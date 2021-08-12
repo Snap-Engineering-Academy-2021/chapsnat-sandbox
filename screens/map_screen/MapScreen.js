@@ -832,12 +832,10 @@ export default function MapScreen() {
 				<Image
 					style={{
 						position: "absolute",
-						left: 200,
+						backgroundColor: "black",
+						left: 100,
 						top: 10,
-						// center: true,
-						right: 0,
-						// zIndex: 100,
-						alignItems: "center",
+						// right: 25,
 					}}
 					source={require("../../assets/Group 194.png")}
 				></Image>
