@@ -37,12 +37,12 @@ import {
 	Button,
 	useWindowDimensions,
 	Dimensions,
+	TouchableOpacity,
 } from "react-native";
 import * as Location from "expo-location";
 import MapView, { Marker } from "react-native-maps";
 import {
 	PanGestureHandler,
-	TouchableOpacity,
 } from "react-native-gesture-handler";
 import { Ionicons } from "@expo/vector-icons";
 import colors from "../../constants/Colors";
@@ -71,9 +71,23 @@ const LOS_ANGELES_REGION = {
 	longitudeDelta: 0.0421,
 };
 
+// function bitmojiOverlay() {
+//   return(
+//     <>
+//       <View style={{height: Dimensions.get('window').height, width: Dimensions.get('window').width, position: 'absolute'}}>
+//       <TouchableOpacity 
+//         onPress={console.log('moo')}
+//         style={{height: Dimensions.get('window').height, width: Dimensions.get('window').width, backgroundColor: 'black',opacity: 0.5, position: 'absolute'}}/>
+//         <Image style={{opacity: 1, top: Dimensions.get('window').height/14}} source={require("../../assets/bitmoji/walkthrough/1.png")}/>
+//       </View>
+//     </>
+//   )
+// }
+
 export default function MapScreen() {
 	const [currLocation, setCurrLocation] = useState(null);
 	const mapView = useRef(null);
+  const [bitmojiFrame, setBitmojiFrame] = useState(0);
 
 	useEffect(() => {
 		(async () => {
@@ -125,6 +139,8 @@ export default function MapScreen() {
 			}
 		},
 	});
+
+  
 	// const bitM = () => {
 	// 	return (
 	// 		<View style={s.overlay}>
@@ -301,7 +317,7 @@ export default function MapScreen() {
 					description="Supporting South LA"
 				/>
 				<Marker
-					// onPress={bitM}
+					onPress={() => {setBitmojiFrame(1)}}
 					// onPress={() => {
 					// 	top.value = withSpring(
 					// 		dimensions.height / 2, // start at half the height
@@ -312,20 +328,21 @@ export default function MapScreen() {
 						latitude: 33.986072440676935,
 						longitude: -118.27652444626881,
 					}}
-					image={require("../../assets/bitmoji/CrossedArms.png")}
+					image={require("../../assets/bitmoji/map/ArmsOnWaist.png")}
 					title="Your Bitmoji"
 				/>
+
 			</MapView>
 			{currLocation ? (
 				<View style={styles.locateButtonContainer}>
 					<TouchableOpacity
-						style={styles.locateButton}
-						onPress={goToCurrLocation}
+						style={{...styles.locateButton, ...styles.shadowEffect}}
+						onPress={() => {goToCurrLocation(); console.log('hi')}}
 					>
 						<Ionicons
 							name={"navigate"}
-							size={40}
-							color={Colors.snapblue}
+							size={20}
+							color={Colors.black}
 							style={{
 								marginTop: 5,
 								marginLeft: 3,
@@ -334,6 +351,46 @@ export default function MapScreen() {
 					</TouchableOpacity>
 				</View>
 			) : null}
+      {(bitmojiFrame%7 && (bitmojiFrame%7 != 6))?<>
+        <View style={{position: 'absolute', left: 0, top: 0}}>
+          <View 
+            style={{
+              position: 'absolute', 
+              backgroundColor: 'black',
+              opacity: 0.5, 
+              height: Dimensions.get('window').height,
+              width: Dimensions.get('window').width
+            }}/>
+          <TouchableOpacity 
+            style={{
+              height: Dimensions.get('window').height,
+              width: Dimensions.get('window').width,
+            }}
+            onPress={() => {setBitmojiFrame(bitmojiFrame + 1); console.log(bitmojiFrame%6);}}
+          >
+            {(bitmojiFrame%7==1)?<Image style={{opacity: 1, top: Dimensions.get('window').height/10}} source={require("../../assets/bitmoji/walkthrough/1.png")}/>:null}
+            {(bitmojiFrame%7==2)?<>
+              <Image style={{opacity: 1}} source={require("../../assets/bitmoji/walkthrough/2.png")}/>
+              <Image style={{opacity: 1, right: 20, bottom: 220, position: 'absolute'}} source={require("../../assets/bitmoji/walkthrough/2-1.png")}/>
+            </>:null}
+            {(bitmojiFrame%7==3)?<Image style={{opacity: 1, top: Dimensions.get('window').height/14}} source={require("../../assets/bitmoji/walkthrough/3.png")}/>:null}
+            {(bitmojiFrame%7==4)?<Image style={{opacity: 1, top: Dimensions.get('window').height/6}} source={require("../../assets/bitmoji/walkthrough/4.png")}/>:null}
+            {(bitmojiFrame%7==5)?<>
+              <Image style={{opacity: 1, top: Dimensions.get('window').height/3.5}} source={require("../../assets/bitmoji/walkthrough/5.png")}/>
+              <Image style={{opacity: 1, top: 100, left: 25, position: 'absolute'}} source={require("../../assets/organizations/community_coalition/Option.png")}/>
+              <Image style={{opacity: 1, top: 120, right:25, position: 'absolute'}} source={require("../../assets/organizations/a_new_way_of_life_foundation/Option.png")}/>
+              <Image style={{opacity: 1, top: 450, right: 50, position: 'absolute'}} source={require("../../assets/organizations/youth_justice_coalition/Option.png")}/>
+              
+            </>:null}
+            
+          </TouchableOpacity>
+        </View>
+      </>:null}
+      {/* {(bitmojiFrame%7 == 6)? (()=>{top.value = withSpring(
+							dimensions.height/5, // start at half the height
+							SPRING_CONFIG
+						); setBitmojiFrame(bitmojiFrame + 1)}):null} */}
+      
 			{/* <View
 				style={{
 					flex: 1,
@@ -362,8 +419,8 @@ export default function MapScreen() {
 							bottom: 0,
 							// top: dimensions.height,
 							backgroundColor: "white",
-							borderTopLeftRadius: 20,
-							borderTopRightRadius: 20,
+							borderTopLeftRadius: 18,
+							borderTopRightRadius: 18,
 							shadowColor: "000",
 							shadowOffset: {
 								width: 0,
@@ -460,6 +517,7 @@ export default function MapScreen() {
 				</Animated.View>
 			</PanGestureHandler>
 
+      
 			{/* ref={this.bs}
 				snapPoints={[330, 0]}
 				renderContent={this.RenderInner}
@@ -528,12 +586,13 @@ const styles = StyleSheet.create({
 	locateButtonContainer: {
 		position: "absolute",
 		bottom: 20,
-		right: 20,
+    left: Dimensions.get('window').width*0.5-12
+    
 	},
 	locateButton: {
-		height: 50,
-		width: 50,
+		height: 30,
+		width: 30,
 		borderRadius: 25,
-		backgroundColor: colors.snapyellow,
+		backgroundColor: 'white',
 	},
 });
