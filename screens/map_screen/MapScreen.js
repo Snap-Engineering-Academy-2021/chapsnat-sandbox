@@ -42,6 +42,7 @@ export default function MapScreen() {
 	const [currLocation, setCurrLocation] = useState(null);
 	const mapView = useRef(null);
 	const [bitmojiFrame, setBitmojiFrame] = useState(0);
+  const [displayWelcome, setDisplayWelcome] = useState(true);
 
 	useEffect(() => {
 		(async () => {
@@ -303,7 +304,6 @@ export default function MapScreen() {
 							{bitmojiFrame % 7 == 1 ? (
 								<Image
 									style={{
-										opacity: 1,
 										top:
 											Dimensions.get(
 												"window"
@@ -316,14 +316,12 @@ export default function MapScreen() {
 								<>
 									<Image
 										style={{
-											opacity: 1,
                       top: 70,
 										}}
 										source={require("../../assets/bitmoji/walkthrough/2.png")}
 									/>
 									<Image
 										style={{
-											opacity: 1,
 											right: 20,
 											bottom: 150,
 											position: "absolute",
@@ -335,7 +333,6 @@ export default function MapScreen() {
 							{bitmojiFrame % 7 == 3 ? (
 								<Image
 									style={{
-										opacity: 1,
 										top:
 											Dimensions.get(
 												"window"
@@ -347,7 +344,6 @@ export default function MapScreen() {
 							{bitmojiFrame % 7 == 4 ? (
 								<Image
 									style={{
-										opacity: 1,
 										top:
 											Dimensions.get(
 												"window"
@@ -360,7 +356,6 @@ export default function MapScreen() {
 								<>
 									<Image
 										style={{
-											opacity: 1,
 											top:
 												Dimensions.get(
 													"window"
@@ -372,7 +367,6 @@ export default function MapScreen() {
 									/>
 									<Image
 										style={{
-											opacity: 1,
 											top: 150,
 											left: 25,
 											position: "absolute",
@@ -381,7 +375,6 @@ export default function MapScreen() {
 									/>
 									<Image
 										style={{
-											opacity: 1,
 											top: 150,
 											right: 25,
 											position: "absolute",
@@ -390,7 +383,6 @@ export default function MapScreen() {
 									/>
 									<Image
 										style={{
-											opacity: 1,
 											top: 500,
 											right: 50,
 											position: "absolute",
@@ -404,6 +396,48 @@ export default function MapScreen() {
 					</View>
 				</>
 			) : null}
+      {displayWelcome?(
+        <>
+					<View
+						style={{
+							position: "absolute",
+							left: 0,
+							top: 0,
+						}}
+					>
+						<View
+							style={{
+								position: "absolute",
+								backgroundColor: "black",
+								opacity: 0.5,
+								height: Dimensions.get("window")
+									.height,
+								width: Dimensions.get("window")
+									.width,
+							}}
+						/>
+
+						<TouchableOpacity
+              activeOpacity={1}
+							style={{
+								height: Dimensions.get("window")
+									.height,
+								width: Dimensions.get("window")
+									.width,
+                alignItems: 'center',
+                justifyContent: 'center',
+							}}
+							onPress={() => {
+								setDisplayWelcome(false)
+							}}
+						>
+              <Image
+                source={require("../../assets/Welcome.png")}
+              />
+            </TouchableOpacity>
+          </View>
+        </>
+      ) : null}
 
 			<PanGestureHandler
 				onGestureEvent={gestureHandler}
