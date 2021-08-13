@@ -43,6 +43,7 @@ export default function MapScreen() {
 	const mapView = useRef(null);
 	const [bitmojiFrame, setBitmojiFrame] = useState(0);
   const [displayWelcome, setDisplayWelcome] = useState(true);
+  const [displayContactForm, setDisplayContactForm] = useState(false);
 
 	useEffect(() => {
 		(async () => {
@@ -438,6 +439,50 @@ export default function MapScreen() {
           </View>
         </>
       ) : null}
+      {/* {displayContactForm?(
+        <>
+					<View
+						style={{
+							position: "absolute",
+							left: 0,
+							top: 0,
+						}}
+					>
+						<View
+							style={{
+								position: "absolute",
+								backgroundColor: "black",
+								opacity: 0.5,
+								height: Dimensions.get("window")
+									.height,
+								width: Dimensions.get("window")
+									.width,
+							}}
+						/>
+
+						<TouchableOpacity
+              activeOpacity={1}
+							style={{
+								height: Dimensions.get("window")
+									.height,
+								width: Dimensions.get("window")
+									.width,
+                alignItems: 'center',
+                justifyContent: 'center',
+                zIndex: 100,
+                elevation: 100
+							}}
+							onPress={() => {
+								setDisplayContactForm(false)
+							}}
+						>
+              <Image
+                source={require("../../assets/ContactForm.png")}
+              />
+            </TouchableOpacity>
+          </View>
+        </>
+      ) : null} */}
 
 			<PanGestureHandler
 				onGestureEvent={gestureHandler}
@@ -707,6 +752,7 @@ export default function MapScreen() {
 								</Text>
 							</TouchableOpacity>
 							<TouchableOpacity
+                onPress={() => {setDisplayContactForm(true);}}
 								style={{
 									...styles.smallButtonContainer,
 									...styles.shadowEffect,
